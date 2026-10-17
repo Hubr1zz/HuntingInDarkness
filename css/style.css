@@ -31,13 +31,14 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* 根字号随视口放大：窄屏 16px，1920 宽约 18.6px，2560 宽封顶 22px；rem 尺寸与版心宽度一起缩放 */
+html { font-size: clamp(100%, calc(10px + .45vw), 137.5%); scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--f-cn);
-  font-size: clamp(15px, 1.05vw, 17px);
+  font-size: 1rem;
   line-height: 1.85;
   overflow-x: hidden;
 }
@@ -280,30 +281,37 @@ html:not([lang="en"]) .lang-toggle [data-lang="zh"], html[lang="en"] .lang-toggl
   justify-content: flex-end;
   text-align: center;
   padding: 4svh var(--gutter) 15svh;
-  background: radial-gradient(ellipse 62% 58% at 50% 46%, #2e2a23 0%, #1a1713 48%, #0b0a08 80%, #050404 100%);
+  /* 光区：两片大而缓的椭圆叠成略不规则的亮区；色标按缓动曲线排布，从中心到四角没有明显的光斑或台阶 */
+  background:
+    radial-gradient(ellipse 58% 48% at 46% 36%, rgba(30, 27, 22, .5) 0%, rgba(30, 27, 22, .38) 20%, rgba(30, 27, 22, .2) 45%, rgba(30, 27, 22, .07) 70%, transparent 100%),
+    radial-gradient(ellipse 80% 70% at 51% 46%, #13110e 0%, #12100d 12%, #100e0b 25%, #0d0c0a 40%, #0a0908 55%, #080706 70%, #050404 85%, #030202 100%);
   overflow: hidden;
 }
 /* 头骨与蝶：占据标题上方的剩余空间，绝不与标题重叠；去色压暗，四周柔和渐隐，下缘完全淡出 */
-.cover__skull { flex: 1 1 0; min-height: 0; width: 100%; display: flex; justify-content: center; margin-bottom: 1.5rem; pointer-events: none; }
+.cover__skull { position: relative; flex: 1 1 0; min-height: 0; width: 100%; display: flex; justify-content: center; margin-bottom: 1.5rem; pointer-events: none; }
 .cover__skull img {
   width: auto;
   height: 100%;
   max-width: 92vw;
   object-fit: contain;
   opacity: .7;
-  filter: grayscale(.6) sepia(.3) brightness(.6) contrast(.85);
-  -webkit-mask-image: radial-gradient(ellipse 60% 64% at 50% 38%, #000 45%, rgba(0, 0, 0, .75) 72%, rgba(0, 0, 0, .45) 100%), linear-gradient(to top, transparent 0%, #000 40%);
-  mask-image: radial-gradient(ellipse 60% 64% at 50% 38%, #000 45%, rgba(0, 0, 0, .75) 72%, rgba(0, 0, 0, .45) 100%), linear-gradient(to top, transparent 0%, #000 40%);
+  filter: grayscale(.6) sepia(.3) brightness(.48) contrast(1.05);
+  -webkit-mask-image: radial-gradient(ellipse 60% 64% at 50% 38%, #000 45%, rgba(0, 0, 0, .75) 72%, rgba(0, 0, 0, .45) 100%), linear-gradient(to top, transparent 0%, rgba(0, 0, 0, .5) 25%, #000 55%);
+  mask-image: radial-gradient(ellipse 60% 64% at 50% 38%, #000 45%, rgba(0, 0, 0, .75) 72%, rgba(0, 0, 0, .45) 100%), linear-gradient(to top, transparent 0%, rgba(0, 0, 0, .5) 25%, #000 55%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
 /* 凹刻：字色贴近底色，每行一道上暗下亮的槽；上沿压出阴影，下沿只留极淡的受光 */
+.cover__mark { position: relative; display: grid; place-items: center; }
+/* 标题背后一层很宽很淡的余光，与上方光区连成一片，只让刻字处稍亮一点 */
+.cover__mark::before { content: ""; position: absolute; left: 50%; top: 50%; width: 150%; height: 260%; transform: translate(-50%, -48%); background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(30, 27, 22, .32) 0%, rgba(30, 27, 22, .22) 25%, rgba(30, 27, 22, .1) 50%, rgba(30, 27, 22, .03) 75%, transparent 100%); pointer-events: none; }
+.cover__ring { position: absolute; left: 50%; top: 50%; width: min(44vmin, 25rem); aspect-ratio: 1; border: 1px dashed rgba(233, 226, 211, .12); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; }
 .cover__title {
   position: relative;
   margin: 0;
   font-family: var(--f-en);
   font-weight: 300;
-  font-size: clamp(3rem, 11vw, 9.5rem);
+  font-size: clamp(3rem, 9vw, 8.5rem);
   line-height: .92;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -447,6 +455,7 @@ html:not([lang="en"]) .lang-toggle [data-lang="zh"], html[lang="en"] .lang-toggl
 .contents__num { font-family: var(--f-en); letter-spacing: .25em; color: var(--grey); font-size: .9rem; }
 .contents__meta strong { font-family: var(--f-cn-serif); font-weight: 900; font-size: 1.7rem; letter-spacing: .3em; padding-left: .3em; }
 .contents__meta span:last-child { font-size: .9rem; color: var(--ink-soft); }
+.contents__meta .contents__num span { color: inherit; }
 .contents__list a:hover strong { color: var(--ember); }
 
 /* ---------- 章节扉页 ---------- */
@@ -504,9 +513,9 @@ html:not([lang="en"]) .lang-toggle [data-lang="zh"], html[lang="en"] .lang-toggl
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  max-width: 40rem;
+  max-width: 44rem;
   margin-inline: auto;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 5rem);
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4.5rem);
 }
 .spread__page--center { align-items: center; text-align: center; }
 
@@ -1229,7 +1238,7 @@ body.in-chapters .running { opacity: 0; }
 
 /* ---------- 英文版排版 ---------- */
 /* 中文标题字体换成 Cormorant Garamond；为中文拉宽的字距收回到适合拉丁字母的程度 */
-html[lang="en"] { --f-cn-serif: "Cormorant Garamond", Georgia, serif; }
+html[lang="en"] { --f-cn-serif: "Cormorant Garamond", Georgia, serif; --f-cn: "Segoe UI", "Helvetica Neue", Arial, "Noto Sans SC", sans-serif; }
 html[lang="en"] .title-block .title-cn { letter-spacing: .02em; }
 html[lang="en"] .door__title .title-cn { letter-spacing: .25em; padding-left: .25em; }
 html[lang="en"] .next-chapter__title { letter-spacing: .08em; }
@@ -1241,3 +1250,7 @@ html[lang="en"] .film__line { letter-spacing: .02em; }
 html[lang="en"] .film__caption, html[lang="en"] .still__caption { letter-spacing: .12em; }
 html[lang="en"] .skip, html[lang="en"] .next-chapter__label { letter-spacing: .15em; }
 html[lang="en"] .btn { letter-spacing: .12em; }
+html[lang="en"] .loopmap__en { display: none; }
+html[lang="en"] .outcome__row { grid-template-columns: 7.5rem 1fr; }
+html[lang="en"] .badge { letter-spacing: .1em; }
+html[lang="en"] .mind__slots span { writing-mode: horizontal-tb; letter-spacing: .05em; font-size: .6rem; }

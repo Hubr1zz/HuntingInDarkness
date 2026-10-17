@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hunting in Darkness</title>
-  <meta name="description" content="一款关于意志的黑暗幻想战役游戏：营地、狩猎、决战，卡牌与骰子。">
+  <meta name="description" content="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cormorant+SC:wght@300;400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -14,12 +14,13 @@
 
 <!-- 固定页眉：书名 · 当前章节 · 页码 -->
 <header class="running" aria-hidden="true">
-  <span class="running__book">Hunting in Darkness</span>
-  <span class="running__chapter" id="runningChapter"></span>
-  <span class="running__page" id="runningPage"></span>
+  <span class="running__book" data-i18n="ui.book"></span>
+  <span class="running__chapter" id="runningChapter" data-i18n-dynamic></span>
+  <span class="running__page" id="runningPage" data-i18n-dynamic></span>
 </header>
+<button type="button" class="lang-toggle" id="langToggle" data-i18n-attr="aria-label:ui.langToggle"><span data-lang="zh" data-i18n="ui.lang.zh"></span><span data-lang="en" data-i18n="ui.lang.en"></span></button>
 
-<a class="skip" id="skipPrologue" href="#contents">跳过序章<span aria-hidden="true">↓</span></a>
+<a class="skip" id="skipPrologue" href="#contents" data-i18n="ui.skip"></a>
 
 <!-- 切换章节时的翻页色幕 -->
 <div class="turn" id="turn" aria-hidden="true"></div>
@@ -27,99 +28,102 @@
 <main>
 
 <!-- ============ 封面 ============ -->
-<section class="cover" data-chapter="" data-nopage>
+<section class="cover" data-chapter-key="" data-nopage>
   <div class="cover__skull" aria-hidden="true"><img src="assets/skull-butterfly.webp" alt="" width="685" height="856"></div>
-  <h1 class="cover__title">Hunting<br>in Darkness</h1>
-  <a class="cover__cue" href="#hero">翻开<span aria-hidden="true">↓</span></a>
+  <div class="cover__mark">
+    <div class="cover__ring" aria-hidden="true"></div>
+    <h1 class="cover__title" data-i18n="cover.title"></h1>
+  </div>
+  <a class="cover__cue" href="#hero" data-i18n="cover.cue"></a>
 </section>
 
 <!-- ============ 首屏 ============ -->
-<section class="hero" id="hero" data-chapter="">
-  <div class="slot slot--bleed" data-asset="H-01" data-label="首屏主视觉：巨大石手、三名猎人、左侧留白" data-ratio="16/9" data-fallback="assets/existing/procession.webp" data-fallback-alt="穿越风暴的人"></div>
+<section class="hero" id="hero" data-chapter-key="">
+  <div class="slot slot--bleed" data-asset="H-01" data-label-key="slot.H-01" data-ratio="16/9" data-fallback="assets/existing/procession.webp" data-fallback-alt-key="slot.procession.alt"></div>
   <div class="hero__shade" aria-hidden="true"></div>
   <div class="hero__text">
-    <p class="kicker kicker--light">- A Dark Fantasy Campaign Game -</p>
-    <h2 class="hero__title">在没有解释的世界里<br>狩猎、死去、再站起来</h2>
-    <ul class="hero__tone" aria-label="游戏调性"><li>压抑</li><li>原始</li><li>美</li></ul>
-    <p class="hero__lede">带领一座营地的幸存者，用卡牌与骰子对抗远古的怪物。<br>坚定的意志让人强大；恐惧会成为身体上的弱点。</p>
+    <p class="kicker kicker--light" data-i18n="hero.kicker"></p>
+    <h2 class="hero__title" data-i18n="hero.title"></h2>
+    <ul class="hero__tone" data-i18n-attr="aria-label:hero.toneLabel"><li data-i18n="hero.tone.1"></li><li data-i18n="hero.tone.2"></li><li data-i18n="hero.tone.3"></li></ul>
+    <p class="hero__lede" data-i18n="hero.lede"></p>
     <div class="hero__cta">
-      <a class="btn btn--light" href="#/contact">关注开发</a>
-      <a class="btn btn--ghost" href="#/contact">合作洽谈</a>
+      <a class="btn btn--light" href="#/contact" data-i18n="hero.cta.follow"></a>
+      <a class="btn btn--ghost" href="#/contact" data-i18n="hero.cta.partner"></a>
     </div>
   </div>
 </section>
 
 <!-- ============ 序章（内核钩子）：黑屏出字 → 遮幅拉开画面 ============ -->
 <div id="prologue">
-  <section class="film" data-chapter="序章">
+  <section class="film" data-chapter-key="chapter.prologue">
     <div class="film__stage">
-      <div class="slot slot--bleed slot--dark" data-asset="P-01" data-label="序章 I：人面石林" data-ratio="16/9"></div>
+      <div class="slot slot--bleed slot--dark" data-asset="P-01" data-label-key="slot.P-01" data-ratio="16/9"></div>
       <div class="film__bar film__bar--top"></div><div class="film__bar film__bar--bottom"></div>
-      <p class="film__line"><span><span class="film__initial">在</span>这里，许多东西无法解释，它们只是存在。</span></p>
-      <p class="film__caption"><span>I</span>人面石林</p>
+      <p class="film__line"><span><span class="film__initial" data-i18n="prologue.1.initial"></span><span data-i18n="prologue.1.rest"></span></span></p>
+      <p class="film__caption" data-i18n="prologue.1.caption"></p>
     </div>
   </section>
-  <section class="film" data-chapter="序章">
+  <section class="film" data-chapter-key="chapter.prologue">
     <div class="film__stage">
-      <div class="slot slot--bleed slot--dark" data-asset="P-02" data-label="序章 II：手臂为角的白鹿" data-ratio="16/9"></div>
+      <div class="slot slot--bleed slot--dark" data-asset="P-02" data-label-key="slot.P-02" data-ratio="16/9"></div>
       <div class="film__bar film__bar--top"></div><div class="film__bar film__bar--bottom"></div>
-      <p class="film__line"><span>它们模仿人的形状——<br>因为只有人类拥有对抗绝望的勇气。</span></p>
-      <p class="film__caption"><span>II</span>誓约白鹿</p>
+      <p class="film__line"><span data-i18n="prologue.2.line"></span></p>
+      <p class="film__caption" data-i18n="prologue.2.caption"></p>
     </div>
   </section>
-  <section class="film" data-chapter="序章">
+  <section class="film" data-chapter-key="chapter.prologue">
     <div class="film__stage">
-      <div class="slot slot--bleed slot--dark" data-asset="P-03" data-label="序章 III：手形枯树下的悼念" data-ratio="16/9"></div>
+      <div class="slot slot--bleed slot--dark" data-asset="P-03" data-label-key="slot.P-03" data-ratio="16/9"></div>
       <div class="film__bar film__bar--top"></div><div class="film__bar film__bar--bottom"></div>
-      <p class="film__line"><span>大多数人会死。</span></p>
-      <p class="film__caption"><span>III</span>悼念</p>
+      <p class="film__line"><span data-i18n="prologue.3.line"></span></p>
+      <p class="film__caption" data-i18n="prologue.3.caption"></p>
     </div>
   </section>
-  <section class="film" data-chapter="序章">
+  <section class="film" data-chapter-key="chapter.prologue">
     <div class="film__stage">
-      <div class="slot slot--bleed slot--dark" data-asset="P-04" data-label="序章 IV：面对必死的结局，依然挺身对抗" data-ratio="16/9"></div>
+      <div class="slot slot--bleed slot--dark" data-asset="P-04" data-label-key="slot.P-04" data-ratio="16/9"></div>
       <div class="film__bar film__bar--top"></div><div class="film__bar film__bar--bottom"></div>
-      <p class="film__line"><span>但总有后来者站起来，<br>延续这份意志。</span></p>
-      <p class="film__caption"><span>IV</span>不屈</p>
+      <p class="film__line"><span data-i18n="prologue.4.line"></span></p>
+      <p class="film__caption" data-i18n="prologue.4.caption"></p>
     </div>
   </section>
 </div>
 
 <!-- ============ 目录 ============ -->
-<section class="contents page" id="contents" data-chapter="目录">
+<section class="contents page" id="contents" data-chapter-key="chapter.contents">
   <div class="title-block" data-reveal>
-    <p class="kicker">- Contents -</p>
-    <h2 class="title-en">Contents</h2>
-    <p class="title-cn">目录</p>
+    <p class="kicker" data-i18n="contents.kicker"></p>
+    <h2 class="title-en" data-i18n="contents.titleEn"></h2>
+    <p class="title-cn" data-i18n="contents.titleCn"></p>
   </div>
   <ol class="contents__list">
     <li data-reveal style="--dot: var(--ch1-dot)">
       <a href="#/gameplay">
-        <div class="contents__emblem"><div class="slot slot--emblem slot--framed" data-asset="E-01" data-label="玩法纹章" data-ratio="1/1"></div></div>
+        <div class="contents__emblem"><div class="slot slot--emblem slot--framed" data-asset="E-01" data-label-key="slot.E-01" data-ratio="1/1"></div></div>
         <div class="contents__meta">
-          <span class="contents__num"><i class="dot"></i>Chapter I</span>
-          <strong>玩法</strong>
-          <span>一座营地，三个阶段；命中由抽牌决定。</span>
+          <span class="contents__num"><i class="dot"></i><span data-i18n="contents.1.num"></span></span>
+          <strong data-i18n="contents.1.name"></strong>
+          <span data-i18n="contents.1.desc"></span>
         </div>
       </a>
     </li>
     <li data-reveal style="--dot: var(--ch2-dot)">
       <a href="#/core">
-        <div class="contents__emblem"><div class="slot slot--emblem slot--framed" data-asset="E-02" data-label="内核纹章" data-ratio="1/1"></div></div>
+        <div class="contents__emblem"><div class="slot slot--emblem slot--framed" data-asset="E-02" data-label-key="slot.E-02" data-ratio="1/1"></div></div>
         <div class="contents__meta">
-          <span class="contents__num"><i class="dot"></i>Chapter II</span>
-          <strong>内核</strong>
-          <span>意志、弱点与失去。</span>
+          <span class="contents__num"><i class="dot"></i><span data-i18n="contents.2.num"></span></span>
+          <strong data-i18n="contents.2.name"></strong>
+          <span data-i18n="contents.2.desc"></span>
         </div>
       </a>
     </li>
     <li data-reveal style="--dot: var(--ch3-dot)">
       <a href="#/art">
-        <div class="contents__emblem"><div class="slot slot--emblem slot--framed" data-asset="E-03" data-label="美术纹章" data-ratio="1/1"></div></div>
+        <div class="contents__emblem"><div class="slot slot--emblem slot--framed" data-asset="E-03" data-label-key="slot.E-03" data-ratio="1/1"></div></div>
         <div class="contents__meta">
-          <span class="contents__num"><i class="dot"></i>Chapter III</span>
-          <strong>美术</strong>
-          <span>线条、色块，与一点暖光。</span>
+          <span class="contents__num"><i class="dot"></i><span data-i18n="contents.3.num"></span></span>
+          <strong data-i18n="contents.3.name"></strong>
+          <span data-i18n="contents.3.desc"></span>
         </div>
       </a>
     </li>
@@ -130,52 +134,52 @@
      章节：页签栏 + 一次只显示一章
      ====================================================== -->
 <div class="chapters" id="chapters">
-<nav class="tabs" aria-label="章节">
-  <span class="tabs__book">Hunting in Darkness</span>
+<nav class="tabs" data-i18n-attr="aria-label:tabs.label">
+  <span class="tabs__book" data-i18n="ui.book"></span>
   <div class="tabs__list" role="tablist">
-    <a class="tabs__tab" role="tab" href="#/gameplay" data-route="gameplay" style="--dot: var(--ch1-dot)"><i class="dot"></i><span class="tabs__num">I</span>玩法</a>
-    <a class="tabs__tab" role="tab" href="#/core" data-route="core" style="--dot: var(--ch2-dot)"><i class="dot"></i><span class="tabs__num">II</span>内核</a>
-    <a class="tabs__tab" role="tab" href="#/art" data-route="art" style="--dot: var(--ch3-dot)"><i class="dot"></i><span class="tabs__num">III</span>美术</a>
-    <a class="tabs__tab" role="tab" href="#/contact" data-route="contact" style="--dot: var(--grey)"><i class="dot"></i>合作</a>
+    <a class="tabs__tab" role="tab" href="#/gameplay" data-route="gameplay" style="--dot: var(--ch1-dot)"><i class="dot"></i><span class="tabs__num" data-i18n="tabs.gameplay.num"></span><span data-i18n="tabs.gameplay"></span></a>
+    <a class="tabs__tab" role="tab" href="#/core" data-route="core" style="--dot: var(--ch2-dot)"><i class="dot"></i><span class="tabs__num" data-i18n="tabs.core.num"></span><span data-i18n="tabs.core"></span></a>
+    <a class="tabs__tab" role="tab" href="#/art" data-route="art" style="--dot: var(--ch3-dot)"><i class="dot"></i><span class="tabs__num" data-i18n="tabs.art.num"></span><span data-i18n="tabs.art"></span></a>
+    <a class="tabs__tab" role="tab" href="#/contact" data-route="contact" style="--dot: var(--grey)"><i class="dot"></i><span data-i18n="tabs.contact"></span></a>
   </div>
-  <span class="tabs__page" id="tabsPage"></span>
+  <span class="tabs__page" id="tabsPage" data-i18n-dynamic></span>
 </nav>
 
 <!-- ============ 第一章 玩法 ============ -->
 <article class="chapter" id="ch1" role="tabpanel" data-route="gameplay" style="--turn: var(--ch1)">
-<section class="door" data-chapter="第一章 · 玩法" style="--door: var(--ch1)">
+<section class="door" data-chapter-key="chapter.gameplay" style="--door: var(--ch1)">
   <div class="door__pattern" data-pattern="T-01"></div>
-  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-01" data-label="玩法纹章" data-ratio="1/1"></div></div>
-  <p class="door__num">Chapter I</p>
-  <h2 class="door__title"><span class="title-en">Gameplay</span><span class="title-cn">玩法</span></h2>
+  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-01" data-label-key="slot.E-01" data-ratio="1/1"></div></div>
+  <p class="door__num" data-i18n="ch1.door.num"></p>
+  <h2 class="door__title"><span class="title-en" data-i18n="ch1.door.titleEn"></span><span class="title-cn" data-i18n="ch1.door.titleCn"></span></h2>
 </section>
 
 <!-- 概览：战役结构 + 主循环图 -->
-<section class="overview page" data-chapter="第一章 · 玩法">
+<section class="overview page" data-chapter-key="chapter.gameplay">
   <div class="overview__head">
     <div>
-      <p class="kicker">- Overview -</p>
-      <h3 class="overview__title">一场战役，<br>一年一轮的循环</h3>
+      <p class="kicker" data-i18n="ch1.overview.kicker"></p>
+      <h3 class="overview__title" data-i18n="ch1.overview.title"></h3>
     </div>
     <div>
-      <p class="overview__lede">玩家在代入与旁观之间，演绎一座营地的故事。猎人从营地出发，在未知的地块上狩猎，与怪物决战，再带着战利品回来——如果还能回来的话。</p>
-      <p>游戏的骨架来自桌面游戏：<span class="kw">卡牌</span>、<span class="kw">骰子</span>和需要亲手拖动的物件。高难度与频繁的死亡，是为了让好运和正确的策略更加耀眼。</p>
+      <p class="overview__lede" data-i18n="ch1.overview.lede"></p>
+      <p data-i18n="ch1.overview.body"></p>
     </div>
   </div>
 
   <div class="campaign" data-reveal>
     <ol class="campaign__steps">
-      <li><span class="campaign__num">01</span>选择战役</li>
-      <li><span class="campaign__num">02</span>运营营地，走完时间线</li>
-      <li><span class="campaign__num">03</span>故事结束</li>
+      <li><span class="campaign__num" data-i18n="ch1.campaign.1.num"></span><span data-i18n="ch1.campaign.1"></span></li>
+      <li><span class="campaign__num" data-i18n="ch1.campaign.2.num"></span><span data-i18n="ch1.campaign.2"></span></li>
+      <li><span class="campaign__num" data-i18n="ch1.campaign.3.num"></span><span data-i18n="ch1.campaign.3"></span></li>
     </ol>
-    <p class="campaign__contains"><strong>一场战役包含</strong>故事背景 · 特殊规则 · 时间线 · 时间线上的关键事件 · 专属内容池（事件、装备、敌人）</p>
+    <p class="campaign__contains" data-i18n="ch1.campaign.contains"></p>
   </div>
 
   <figure class="loopmap" data-reveal>
     <svg viewBox="0 0 960 520" role="img" aria-labelledby="loopTitle loopDesc">
-      <title id="loopTitle">主循环：营地、狩猎、决战</title>
-      <desc id="loopDesc">营地组建小队出发狩猎；狩猎满足条件后进入决战，也可以放弃决战带着地图资源返回营地；决战后带回 Boss 素材和地图资源。特殊情况下，战役固定事件会让营地直接进入决战。每完成一轮，时间线推进一年。</desc>
+      <title id="loopTitle" data-i18n="ch1.loop.title"></title>
+      <desc id="loopDesc" data-i18n="ch1.loop.desc"></desc>
       <defs>
         <marker id="loopArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="loopmap__head"/></marker>
         <marker id="loopArrowWarm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="loopmap__head loopmap__head--warm"/></marker>
@@ -189,592 +193,595 @@
       <path d="M355 72 C 150 72, 96 210, 150 356" class="loopmap__edge loopmap__edge--special" marker-end="url(#loopArrowWarm)"/>
 
       <!-- 连线说明 -->
-      <text x="690" y="214" class="loopmap__label">组建小队 · 携带装备</text>
-      <text x="704" y="234" class="loopmap__label">选择目标 · 出发</text>
-      <text x="606" y="300" class="loopmap__label loopmap__label--end">放弃决战</text>
-      <text x="606" y="320" class="loopmap__label loopmap__label--end">带回地图资源</text>
-      <text x="482" y="414" class="loopmap__label loopmap__label--mid">满足条件，找到猎物</text>
-      <text x="266" y="240" class="loopmap__label loopmap__label--end">带回 Boss 素材</text>
-      <text x="280" y="260" class="loopmap__label loopmap__label--end">+ 地图资源</text>
-      <text x="40" y="34" class="loopmap__label loopmap__label--warm">特殊：战役固定事件</text>
-      <text x="40" y="54" class="loopmap__label loopmap__label--warm">直接决战，打不过则妥协或重开</text>
+      <text x="690" y="214" class="loopmap__label" data-i18n="ch1.loop.edge.party"></text>
+      <text x="704" y="234" class="loopmap__label" data-i18n="ch1.loop.edge.depart"></text>
+      <text x="606" y="300" class="loopmap__label loopmap__label--end" data-i18n="ch1.loop.edge.abandon"></text>
+      <text x="606" y="320" class="loopmap__label loopmap__label--end" data-i18n="ch1.loop.edge.mapLoot"></text>
+      <text x="482" y="414" class="loopmap__label loopmap__label--mid" data-i18n="ch1.loop.edge.found"></text>
+      <text x="266" y="240" class="loopmap__label loopmap__label--end" data-i18n="ch1.loop.edge.bossLoot"></text>
+      <text x="280" y="260" class="loopmap__label loopmap__label--end" data-i18n="ch1.loop.edge.plusMap"></text>
+      <text x="40" y="34" class="loopmap__label loopmap__label--warm" data-i18n="ch1.loop.edge.special"></text>
+      <text x="40" y="54" class="loopmap__label loopmap__label--warm" data-i18n="ch1.loop.edge.specialOutcome"></text>
 
       <!-- 中心 -->
-      <text x="430" y="300" class="loopmap__center">一年</text>
-      <text x="430" y="332" class="loopmap__center-sub">每完成一轮，时间线推进一年</text>
+      <text x="430" y="300" class="loopmap__center" data-i18n="ch1.loop.center"></text>
+      <text x="430" y="332" class="loopmap__center-sub" data-i18n="ch1.loop.centerSub"></text>
 
       <!-- 节点 -->
       <g class="loopmap__node" style="--c: var(--phase-1)">
         <rect x="355" y="30" width="250" height="112" rx="10"/>
         <rect x="355" y="30" width="6" height="112" class="loopmap__bar"/>
-        <text x="380" y="68" class="loopmap__name">营地</text>
-        <text x="434" y="68" class="loopmap__en">SETTLEMENT</text>
-        <text x="380" y="98" class="loopmap__items">建造 · 制造装备 · 提升角色</text>
-        <text x="380" y="124" class="loopmap__share">预期时长约 25%</text>
+        <text x="380" y="68" class="loopmap__name" data-i18n="ch1.loop.settlement.name"></text>
+        <text x="434" y="68" class="loopmap__en" data-i18n="ch1.loop.settlement.en"></text>
+        <text x="380" y="98" class="loopmap__items" data-i18n="ch1.loop.settlement.items"></text>
+        <text x="380" y="124" class="loopmap__share" data-i18n="ch1.loop.settlement.share"></text>
       </g>
       <g class="loopmap__node" style="--c: var(--phase-2)">
         <rect x="650" y="360" width="250" height="124" rx="10"/>
         <rect x="650" y="360" width="6" height="124" class="loopmap__bar"/>
-        <text x="675" y="398" class="loopmap__name">狩猎</text>
-        <text x="729" y="398" class="loopmap__en">HUNT</text>
-        <text x="675" y="426" class="loopmap__items">地图中移动 · 收集情报</text>
-        <text x="675" y="446" class="loopmap__items">资源 · 随机事件</text>
-        <text x="675" y="470" class="loopmap__share">预期时长约 30%</text>
+        <text x="675" y="398" class="loopmap__name" data-i18n="ch1.loop.hunt.name"></text>
+        <text x="729" y="398" class="loopmap__en" data-i18n="ch1.loop.hunt.en"></text>
+        <text x="675" y="426" class="loopmap__items" data-i18n="ch1.loop.hunt.items1"></text>
+        <text x="675" y="446" class="loopmap__items" data-i18n="ch1.loop.hunt.items2"></text>
+        <text x="675" y="470" class="loopmap__share" data-i18n="ch1.loop.hunt.share"></text>
       </g>
       <g class="loopmap__node" style="--c: var(--phase-3)">
         <rect x="60" y="360" width="254" height="124" rx="10"/>
         <rect x="60" y="360" width="6" height="124" class="loopmap__bar"/>
-        <text x="85" y="398" class="loopmap__name">决战</text>
-        <text x="139" y="398" class="loopmap__en">SHOWDOWN</text>
-        <text x="85" y="426" class="loopmap__items">Boss 战 · 卡牌 · 骰子</text>
-        <text x="85" y="446" class="loopmap__items">战棋式策略战斗</text>
-        <text x="85" y="470" class="loopmap__share">预期时长约 45%</text>
+        <text x="85" y="398" class="loopmap__name" data-i18n="ch1.loop.showdown.name"></text>
+        <text x="139" y="398" class="loopmap__en" data-i18n="ch1.loop.showdown.en"></text>
+        <text x="85" y="426" class="loopmap__items" data-i18n="ch1.loop.showdown.items1"></text>
+        <text x="85" y="446" class="loopmap__items" data-i18n="ch1.loop.showdown.items2"></text>
+        <text x="85" y="470" class="loopmap__share" data-i18n="ch1.loop.showdown.share"></text>
       </g>
     </svg>
 
     <!-- 窄屏用的文字版 -->
     <ol class="looplist">
-      <li style="--c: var(--phase-1)"><strong>营地</strong><span>建造 · 制造装备 · 提升角色 · 约 25%</span></li>
-      <li class="looplist__edge">组建小队、携带装备、选择目标，出发 ↓</li>
-      <li style="--c: var(--phase-2)"><strong>狩猎</strong><span>地图中移动 · 收集情报 · 资源 · 随机事件 · 约 30%</span></li>
-      <li class="looplist__edge">满足条件找到猎物 ↓　或放弃决战，带回地图资源 ↺</li>
-      <li style="--c: var(--phase-3)"><strong>决战</strong><span>Boss 战 · 卡牌 · 骰子 · 战棋式策略战斗 · 约 45%</span></li>
-      <li class="looplist__edge">带回 Boss 素材与地图资源 ↺ 时间线推进一年</li>
-      <li class="looplist__edge looplist__edge--warm">特殊：战役固定事件会让营地直接进入决战，打不过则妥协或重开</li>
+      <li style="--c: var(--phase-1)"><strong data-i18n="ch1.looplist.settlement.name"></strong><span data-i18n="ch1.looplist.settlement.detail"></span></li>
+      <li class="looplist__edge" data-i18n="ch1.looplist.edge1"></li>
+      <li style="--c: var(--phase-2)"><strong data-i18n="ch1.looplist.hunt.name"></strong><span data-i18n="ch1.looplist.hunt.detail"></span></li>
+      <li class="looplist__edge" data-i18n="ch1.looplist.edge2"></li>
+      <li style="--c: var(--phase-3)"><strong data-i18n="ch1.looplist.showdown.name"></strong><span data-i18n="ch1.looplist.showdown.detail"></span></li>
+      <li class="looplist__edge" data-i18n="ch1.looplist.edge3"></li>
+      <li class="looplist__edge looplist__edge--warm" data-i18n="ch1.looplist.special"></li>
     </ol>
-    <figcaption>每完成一轮，营地的时间线推进一年。百分比为预期时长占比。</figcaption>
+    <figcaption data-i18n="ch1.loop.caption"></figcaption>
   </figure>
 </section>
 
 <!-- 阶段 I 营地 -->
-<section class="spread spread--art-right page" data-chapter="第一章 · 玩法">
-  <div class="spread__art"><div class="slot slot--bleed" data-asset="G-01" data-label="营地：巨兽肋骨中的聚落" data-ratio="3/2"></div></div>
+<section class="spread spread--art-right page" data-chapter-key="chapter.gameplay">
+  <div class="spread__art"><div class="slot slot--bleed" data-asset="G-01" data-label-key="slot.G-01" data-ratio="3/2"></div></div>
   <div class="spread__page">
     <div class="title-block" data-reveal>
-      <p class="kicker">- Phase I -</p>
-      <h3 class="title-en">Settlement</h3>
-      <p class="title-cn">营地</p>
+      <p class="kicker" data-i18n="ch1.settlement.kicker"></p>
+      <h3 class="title-en" data-i18n="ch1.settlement.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch1.settlement.titleCn"></p>
     </div>
-    <p class="rule-lede">狩猎归来，营地把怪物的残骸变成工具。灯火之下，时间以年计算。</p>
+    <p class="rule-lede" data-i18n="ch1.settlement.lede"></p>
     <ol class="diamonds">
-      <li><strong>工坊</strong>：把素材加工成武器、护甲与器物。怪物最有价值的部位，未必是你想象中的那一个。</li>
-      <li><strong>发明</strong>：解锁新的设施与可能性，推动战役进度。</li>
-      <li><strong>繁衍与招募</strong>：新生儿需要几个狩猎年才能长大；新人带着承诺加入。</li>
-      <li><strong>时间线</strong>：某些事件已经被预告，并会在约定的年份到来。</li>
+      <li data-i18n="ch1.settlement.1"></li>
+      <li data-i18n="ch1.settlement.2"></li>
+      <li data-i18n="ch1.settlement.3"></li>
+      <li data-i18n="ch1.settlement.4"></li>
     </ol>
   </div>
 </section>
 
 <!-- 阶段 II 狩猎 -->
-<section class="spread spread--art-left page" data-chapter="第一章 · 玩法">
-  <div class="spread__art"><div class="slot slot--bleed" data-asset="G-02" data-label="狩猎：由六边形地块卡拼成的大地" data-ratio="3/2"></div></div>
+<section class="spread spread--art-left page" data-chapter-key="chapter.gameplay">
+  <div class="spread__art"><div class="slot slot--bleed" data-asset="G-02" data-label-key="slot.G-02" data-ratio="3/2"></div></div>
   <div class="spread__page">
     <div class="title-block" data-reveal>
-      <p class="kicker">- Phase II -</p>
-      <h3 class="title-en">The Hunt</h3>
-      <p class="title-cn">狩猎</p>
+      <p class="kicker" data-i18n="ch1.hunt.kicker"></p>
+      <h3 class="title-en" data-i18n="ch1.hunt.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch1.hunt.titleCn"></p>
     </div>
-    <p class="rule-lede">大地由六边形地块卡拼成。除了脚下这一块，其余全部背面朝上。</p>
+    <p class="rule-lede" data-i18n="ch1.hunt.lede"></p>
     <ol class="diamonds">
-      <li><strong>翻开地块</strong>：每翻开一块地，小队都会立即承受它的规则。</li>
-      <li><strong>资源点</strong>：破碎的雕像、未完成的雕像、寄居蟹的巢穴……每种地形都有自己的资源池。</li>
-      <li><strong>采集</strong>：素材以一组卡牌展示，按允许的次数翻开——你看得见全部，却只能拿走一部分。</li>
-      <li><strong>追踪猎物</strong>：抵达怪物所在之处，进入决战。</li>
+      <li data-i18n="ch1.hunt.1"></li>
+      <li data-i18n="ch1.hunt.2"></li>
+      <li data-i18n="ch1.hunt.3"></li>
+      <li data-i18n="ch1.hunt.4"></li>
     </ol>
     <aside class="note">
-      <p class="note__title">例：雕像平原</p>
-      <p>一次生成 4 块相连；可能出现 0–3 个资源点。「寄居蟹巢穴」在同一地块最多 1 个。</p>
+      <p class="note__title" data-i18n="ch1.hunt.note.title"></p>
+      <p data-i18n="ch1.hunt.note.body"></p>
     </aside>
   </div>
 </section>
 
 <!-- 阶段 III 决战 -->
-<section class="spread spread--art-right page" data-chapter="第一章 · 玩法">
-  <div class="spread__art"><div class="slot slot--bleed" data-asset="G-03" data-label="决战：四名猎人围猎六足巨兽" data-ratio="3/2"></div></div>
+<section class="spread spread--art-right page" data-chapter-key="chapter.gameplay">
+  <div class="spread__art"><div class="slot slot--bleed" data-asset="G-03" data-label-key="slot.G-03" data-ratio="3/2"></div></div>
   <div class="spread__page">
     <div class="title-block" data-reveal>
-      <p class="kicker">- Phase III -</p>
-      <h3 class="title-en">Showdown</h3>
-      <p class="title-cn">决战</p>
+      <p class="kicker" data-i18n="ch1.showdown.kicker"></p>
+      <h3 class="title-en" data-i18n="ch1.showdown.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch1.showdown.titleCn"></p>
     </div>
-    <p class="rule-lede">怪物翻开的行动卡决定这一轮的<span class="kw">时点</span>上限：在它的压迫下，每个猎人还能做多少事。</p>
+    <p class="rule-lede" data-i18n="ch1.showdown.lede"></p>
     <ol class="diamonds">
-      <li><strong>自由的行动顺序</strong>：玩家决定猎人谁先行动。一个人的行动，会改变另一个人的选择。</li>
-      <li><strong>耗尽</strong>：超出时点的行动依然发生，但欠下的时间要在下一轮偿还。</li>
-      <li><strong>超时</strong>：还不上，就无法行动——除非同伴花 1 点<span class="kw">意志</span>，替你争取 1 个时点。</li>
-      <li><strong>部位</strong>：攻击会翻开怪物的部位卡，命中分配到哪里，由你决定。</li>
+      <li data-i18n="ch1.showdown.1"></li>
+      <li data-i18n="ch1.showdown.2"></li>
+      <li data-i18n="ch1.showdown.3"></li>
+      <li data-i18n="ch1.showdown.4"></li>
     </ol>
   </div>
 </section>
 
 <!-- 核心机制画廊：六个设计支柱，每页一条规则 + 可操作示例 -->
-<section class="rules page" data-chapter="第一章 · 玩法">
+<section class="rules page" data-chapter-key="chapter.gameplay">
   <div class="title-block" data-reveal>
-    <p class="kicker">- Core Rules -</p>
-    <h3 class="title-en">Six Pillars</h3>
-    <p class="title-cn">核心机制</p>
+    <p class="kicker" data-i18n="rules.kicker"></p>
+    <h3 class="title-en" data-i18n="rules.titleEn"></h3>
+    <p class="title-cn" data-i18n="rules.titleCn"></p>
   </div>
 
-  <nav class="rules__index" aria-label="核心机制索引">
-    <button type="button" data-goto="0"><span>01</span>翻面行动</button>
-    <button type="button" data-goto="1"><span>02</span>抽牌命中</button>
-    <button type="button" data-goto="2"><span>03</span>Boss 卡组</button>
-    <button type="button" data-goto="3"><span>04</span>装备词条</button>
-    <button type="button" data-goto="4"><span>05</span>事件判定</button>
-    <button type="button" data-goto="5"><span>06</span>弱点即钥匙</button>
+  <nav class="rules__index" data-i18n-attr="aria-label:rules.indexLabel">
+    <button type="button" data-goto="0" data-i18n="rules.index.1"></button>
+    <button type="button" data-goto="1" data-i18n="rules.index.2"></button>
+    <button type="button" data-goto="2" data-i18n="rules.index.3"></button>
+    <button type="button" data-goto="3" data-i18n="rules.index.4"></button>
+    <button type="button" data-goto="4" data-i18n="rules.index.5"></button>
+    <button type="button" data-goto="5" data-i18n="rules.index.6"></button>
   </nav>
 
-  <div class="rules__track" id="rulesTrack" tabindex="0" aria-label="核心机制，可左右滑动">
+  <div class="rules__track" id="rulesTrack" tabindex="0" data-i18n-attr="aria-label:rules.trackLabel">
 
     <!-- 01 翻面行动 -->
     <article class="rule">
       <div class="rule__text">
-        <p class="rule__pillar">Pillar · 卡牌感与行动之间的交互</p>
-        <h4 class="rule__title"><span class="title-en">Flip to Act</span>行动即翻面</h4>
-        <p class="rule-lede">没有抽牌，也没有手牌。猎人一开始就拥有全部行动卡；用一张，就把它翻到背面。</p>
+        <p class="rule__pillar" data-i18n="rules.flip.pillar"></p>
+        <h4 class="rule__title" data-i18n="rules.flip.title"></h4>
+        <p class="rule-lede" data-i18n="rules.flip.lede"></p>
         <ol class="diamonds">
-          <li><strong>翻面即触发</strong>：执行正面效果后翻到背面。背面同样可以有效果，并写着恢复条件。</li>
-          <li><strong>恢复条件</strong>：支付费用、回合开始、卡牌之间或猎人之间的联动。</li>
-          <li><strong>灵感</strong>：红（残暴）、蓝（精湛）、黄（速度）三色，存放在 4 格的思维区，由「专注」掷骰产生。</li>
-          <li><strong>运转</strong>：越快把卡翻回正面，翻面次数越多，输出越高。</li>
+          <li data-i18n="rules.flip.1"></li>
+          <li data-i18n="rules.flip.2"></li>
+          <li data-i18n="rules.flip.3"></li>
+          <li data-i18n="rules.flip.4"></li>
         </ol>
-        <p class="note">怪物翻开的行动卡决定本轮的时点上限；超出即「耗尽」，本回合结束。</p>
+        <p class="note" data-i18n="rules.flip.note"></p>
       </div>
       <div class="demo demo--flip" id="flipDemo">
         <div class="demo__bar">
-          <span>第 <output id="flipRound">1</output> 回合</span>
-          <span class="timepips" id="flipTime" aria-label="时点"></span>
+          <span><span data-i18n="demo.flip.roundBefore"></span><output id="flipRound" data-i18n-dynamic>1</output><span data-i18n="demo.flip.roundAfter"></span></span>
+          <span class="timepips" id="flipTime" data-i18n-dynamic></span>
         </div>
-        <div class="acards" id="flipCards"></div>
+        <div class="acards" id="flipCards" data-i18n-dynamic></div>
         <div class="mind">
-          <p class="mind__label">思维区</p>
-          <div class="mind__slots" id="flipMind"></div>
+          <p class="mind__label" data-i18n="demo.flip.mind"></p>
+          <div class="mind__slots" id="flipMind" data-i18n-dynamic></div>
         </div>
         <div class="demo__actions">
-          <button type="button" class="btn btn--outline btn--sm" id="flipEnd">结束回合</button>
-          <button type="button" class="btn btn--outline btn--sm" id="flipReset">重置</button>
+          <button type="button" class="btn btn--outline btn--sm" id="flipEnd" data-i18n="demo.flip.end"></button>
+          <button type="button" class="btn btn--outline btn--sm" id="flipReset" data-i18n="demo.flip.reset"></button>
         </div>
-        <p class="demo__log" id="flipLog" aria-live="polite">点一张正面的卡来使用它；点背面的「攻击」支付灵感翻回。</p>
-        <p class="fineprint">机制示意 · 「专注」卡与时点上限为演示设定</p>
+        <p class="demo__log" id="flipLog" aria-live="polite" data-i18n-dynamic></p>
+        <p class="fineprint" data-i18n="demo.flip.fineprint"></p>
       </div>
     </article>
 
     <!-- 02 抽牌命中（原演示） -->
     <article class="rule">
       <div class="rule__text">
-        <p class="rule__pillar">Pillar · 骰子与卡牌的桌游体验</p>
-        <h4 class="rule__title"><span class="title-en">Draw, Not Roll</span>命中由抽牌决定</h4>
-        <p class="rule-lede">攻击时不掷骰子，而是用双方的数值组成一副临时牌堆。</p>
+        <p class="rule__pillar" data-i18n="rules.draw.pillar"></p>
+        <h4 class="rule__title" data-i18n="rules.draw.title"></h4>
+        <p class="rule-lede" data-i18n="rules.draw.lede"></p>
         <ol class="diamonds">
-          <li>猎人的<span class="kw">力量</span>生成「命中」卡，至少 1 张。</li>
-          <li>武器威力抵消怪物的韧性；剩余的<span class="kw">韧性</span>生成「落空」卡。</li>
-          <li>混洗后，按攻击次数抽牌。结算后，这副牌被销毁。</li>
+          <li data-i18n="rules.draw.1"></li>
+          <li data-i18n="rules.draw.2"></li>
+          <li data-i18n="rules.draw.3"></li>
         </ol>
-        <p class="note">怪物攻击你时规则反过来：它的精准生成命中卡，你的<span class="kw">敏捷</span>生成闪避卡。</p>
+        <p class="note" data-i18n="rules.draw.note"></p>
       </div>
       <div class="demo deck" id="deck">
         <div class="deck__controls">
-          <label>力量 <span class="stepper"><button type="button" data-step="str" data-d="-1" aria-label="减少力量">−</button><output id="strOut">3</output><button type="button" data-step="str" data-d="1" aria-label="增加力量">+</button></span></label>
-          <label>剩余韧性 <span class="stepper"><button type="button" data-step="tough" data-d="-1" aria-label="减少韧性">−</button><output id="toughOut">2</output><button type="button" data-step="tough" data-d="1" aria-label="增加韧性">+</button></span></label>
-          <label>攻击次数 <span class="stepper"><button type="button" data-step="hits" data-d="-1" aria-label="减少攻击次数">−</button><output id="hitsOut">2</output><button type="button" data-step="hits" data-d="1" aria-label="增加攻击次数">+</button></span></label>
+          <label><span data-i18n="demo.deck.str"></span><span class="stepper"><button type="button" data-step="str" data-d="-1" data-i18n-attr="aria-label:demo.deck.strDec" data-i18n="ui.dec"></button><output id="strOut" data-i18n-dynamic>3</output><button type="button" data-step="str" data-d="1" data-i18n-attr="aria-label:demo.deck.strInc" data-i18n="ui.inc"></button></span></label>
+          <label><span data-i18n="demo.deck.tough"></span><span class="stepper"><button type="button" data-step="tough" data-d="-1" data-i18n-attr="aria-label:demo.deck.toughDec" data-i18n="ui.dec"></button><output id="toughOut" data-i18n-dynamic>2</output><button type="button" data-step="tough" data-d="1" data-i18n-attr="aria-label:demo.deck.toughInc" data-i18n="ui.inc"></button></span></label>
+          <label><span data-i18n="demo.deck.hits"></span><span class="stepper"><button type="button" data-step="hits" data-d="-1" data-i18n-attr="aria-label:demo.deck.hitsDec" data-i18n="ui.dec"></button><output id="hitsOut" data-i18n-dynamic>2</output><button type="button" data-step="hits" data-d="1" data-i18n-attr="aria-label:demo.deck.hitsInc" data-i18n="ui.inc"></button></span></label>
         </div>
-        <div class="deck__pile" id="deckPile" aria-label="临时牌堆"></div>
-        <button type="button" class="btn btn--ink" id="drawBtn">混洗并抽牌</button>
-        <div class="deck__hand" id="deckHand" aria-live="polite"></div>
-        <p class="deck__result" id="deckResult">&nbsp;</p>
-        <p class="fineprint">机制示意 · 数值仍在开发中</p>
+        <div class="deck__pile" id="deckPile" data-i18n-dynamic data-i18n-attr="aria-label:demo.deck.pileLabel"></div>
+        <button type="button" class="btn btn--ink" id="drawBtn" data-i18n="demo.deck.draw"></button>
+        <div class="deck__hand" id="deckHand" aria-live="polite" data-i18n-dynamic></div>
+        <p class="deck__result" id="deckResult" data-i18n-dynamic>&nbsp;</p>
+        <p class="fineprint" data-i18n="demo.deck.fineprint"></p>
       </div>
     </article>
 
     <!-- 03 Boss 卡组 -->
     <article class="rule">
       <div class="rule__text">
-        <p class="rule__pillar">Pillar · 每个 Boss 都像一款不同的桌游</p>
-        <h4 class="rule__title"><span class="title-en">The Monster's Deck</span>Boss 自有卡组</h4>
-        <p class="rule-lede">Boss 不靠掷骰决定行为，而是翻开它自己的卡组。</p>
+        <p class="rule__pillar" data-i18n="rules.boss.pillar"></p>
+        <h4 class="rule__title" data-i18n="rules.boss.title"></h4>
+        <p class="rule-lede" data-i18n="rules.boss.lede"></p>
         <ol class="diamonds">
-          <li><strong>行动卡</strong>：每回合翻开牌堆顶一张，写明伤害、精准、次数、目标，以及这一轮给猎人的时点上限。</li>
-          <li><strong>部位卡</strong>：被命中时翻开。每张有独立血量，按条件触发反击、掉落素材或打乱节奏。</li>
-          <li><strong>特性与 Buff 槽</strong>：常驻被动与战斗中的临时状态。</li>
-          <li>换一个 Boss，就换一套牌和一套规则。</li>
+          <li data-i18n="rules.boss.1"></li>
+          <li data-i18n="rules.boss.2"></li>
+          <li data-i18n="rules.boss.3"></li>
+          <li data-i18n="rules.boss.4"></li>
         </ol>
       </div>
       <div class="demo demo--boss" id="bossDemo">
-        <p class="demo__head"><i class="dot" style="--dot: var(--ember)"></i>玻璃骨髓圣像 <small>示例 Boss</small></p>
+        <p class="demo__head"><i class="dot" style="--dot: var(--ember)"></i><span data-i18n="demo.boss.head"></span></p>
         <div class="boss">
           <div class="boss__col">
-            <p class="boss__label">行动牌堆 <output id="bossActCount">5</output></p>
-            <div class="boss__slot" id="bossAct"><span class="boss__empty">尚未翻开</span></div>
-            <button type="button" class="btn btn--ink btn--sm" id="bossActBtn">怪物回合：翻开行动卡</button>
+            <p class="boss__label"><span data-i18n="demo.boss.actPile"></span><output id="bossActCount" data-i18n-dynamic>5</output></p>
+            <div class="boss__slot" id="bossAct" data-i18n-dynamic><span class="boss__empty" data-i18n="demo.boss.empty"></span></div>
+            <button type="button" class="btn btn--ink btn--sm" id="bossActBtn" data-i18n="demo.boss.actBtn"></button>
           </div>
           <div class="boss__col">
-            <p class="boss__label">部位牌堆 <output id="bossPartCount">5</output></p>
-            <div class="boss__slot" id="bossPart"><span class="boss__empty">尚未翻开</span></div>
-            <button type="button" class="btn btn--outline btn--sm" id="bossPartBtn">猎人命中：翻开部位卡</button>
+            <p class="boss__label"><span data-i18n="demo.boss.partPile"></span><output id="bossPartCount" data-i18n-dynamic>5</output></p>
+            <div class="boss__slot" id="bossPart" data-i18n-dynamic><span class="boss__empty" data-i18n="demo.boss.empty"></span></div>
+            <button type="button" class="btn btn--outline btn--sm" id="bossPartBtn" data-i18n="demo.boss.partBtn"></button>
           </div>
         </div>
-        <p class="fineprint">示例卡牌 · 非正式数值</p>
+        <p class="fineprint" data-i18n="demo.boss.fineprint"></p>
       </div>
     </article>
 
     <!-- 04 装备词条 -->
     <article class="rule">
       <div class="rule__text">
-        <p class="rule__pillar">Pillar · 大量条件判断与联动</p>
-        <h4 class="rule__title"><span class="title-en">Keywords</span>装备词条</h4>
-        <p class="rule-lede">装备上的词条会被其他规则查询：怪物部位、事件和套装组合都会对它们作出反应。</p>
+        <p class="rule__pillar" data-i18n="rules.gear.pillar"></p>
+        <h4 class="rule__title" data-i18n="rules.gear.title"></h4>
+        <p class="rule-lede" data-i18n="rules.gear.lede"></p>
         <ol class="diamonds">
-          <li>凑满 3 个「岩石」：全身护甲 +1。</li>
-          <li>2「轻盈」+ 1「锋利」：每回合第一次翻面攻击卡时，获得 1 时点。</li>
-          <li>「钝器」命中带「甲壳」的部位时，额外掉落素材。</li>
-          <li>「易碎」的装备在某些事件里更容易损坏。</li>
+          <li data-i18n="rules.gear.1"></li>
+          <li data-i18n="rules.gear.2"></li>
+          <li data-i18n="rules.gear.3"></li>
+          <li data-i18n="rules.gear.4"></li>
         </ol>
       </div>
       <div class="demo demo--gear" id="gearDemo">
-        <p class="demo__head">携带装备 <output id="gearCount">0</output> / 4</p>
-        <div class="gear" id="gearGrid"></div>
-        <div class="tally" id="gearTally"></div>
-        <ul class="combos" id="gearCombos"></ul>
-        <p class="fineprint">示例装备与组合 · 非正式数值</p>
+        <p class="demo__head"><span data-i18n="demo.gear.countBefore"></span><output id="gearCount" data-i18n-dynamic>0</output><span data-i18n="demo.gear.countAfter"></span></p>
+        <div class="gear" id="gearGrid" data-i18n-dynamic></div>
+        <div class="tally" id="gearTally" data-i18n-dynamic></div>
+        <ul class="combos" id="gearCombos" data-i18n-dynamic></ul>
+        <p class="fineprint" data-i18n="demo.gear.fineprint"></p>
       </div>
     </article>
 
     <!-- 05 事件判定 -->
     <article class="rule">
       <div class="rule__text">
-        <p class="rule__pillar">Pillar · 频繁的小惩罚，放大好运的正反馈</p>
-        <h4 class="rule__title"><span class="title-en">Fortune Favours Few</span>轻罚常见，重奖罕见</h4>
-        <p class="rule-lede">事件里的大多数结果都是轻微的惩罚；真正的奖励很难拿到，但值得。</p>
+        <p class="rule__pillar" data-i18n="rules.fate.pillar"></p>
+        <h4 class="rule__title" data-i18n="rules.fate.title"></h4>
+        <p class="rule-lede" data-i18n="rules.fate.lede"></p>
         <ol class="diamonds">
-          <li><strong>1–6 轻罚</strong>：小小的损失，不至于毁掉一局。</li>
-          <li><strong>7–9 平稳</strong>：什么也没有发生。</li>
-          <li><strong>10+ 重奖</strong>：稀有素材、属性成长或特殊剧情。</li>
-          <li>判定属性加在点数上；花 1 点<span class="kw">意志</span>可以重投，但<span class="kw">命运值</span>永久 +1。</li>
+          <li data-i18n="rules.fate.1"></li>
+          <li data-i18n="rules.fate.2"></li>
+          <li data-i18n="rules.fate.3"></li>
+          <li data-i18n="rules.fate.4"></li>
         </ol>
-        <p class="note">同一张结果表也可以用抽牌呈现：属性每 +1，就把一张惩罚卡换成奖励卡。</p>
+        <p class="note" data-i18n="rules.fate.note"></p>
       </div>
       <div class="demo demo--fate" id="fateDemo">
         <div class="eventcard">
-          <p class="eventcard__kicker">- 狩猎事件 · 示例 -</p>
-          <p class="eventcard__title">腐叶下的手</p>
-          <p class="eventcard__body">落叶下有一只仍在呼吸的手。它摊开着，像在等人去握。</p>
-          <p class="eventcard__check">用<strong>胆识</strong>判定：握住它</p>
+          <p class="eventcard__kicker" data-i18n="demo.fate.event.kicker"></p>
+          <p class="eventcard__title" data-i18n="demo.fate.event.title"></p>
+          <p class="eventcard__body" data-i18n="demo.fate.event.body"></p>
+          <p class="eventcard__check" data-i18n="demo.fate.event.check"></p>
         </div>
         <div class="fate__controls">
-          <span class="seg" role="group" aria-label="判定形式">
-            <button type="button" data-mode="dice" aria-pressed="true">掷 d10</button>
-            <button type="button" data-mode="cards" aria-pressed="false">抽牌</button>
+          <span class="seg" role="group" data-i18n-attr="aria-label:demo.fate.modeLabel">
+            <button type="button" data-mode="dice" aria-pressed="true" data-i18n="demo.fate.mode.dice"></button>
+            <button type="button" data-mode="cards" aria-pressed="false" data-i18n="demo.fate.mode.cards"></button>
           </span>
-          <label>胆识 <span class="stepper"><button type="button" data-brave="-1" aria-label="降低胆识">−</button><output id="fateBrave">0</output><button type="button" data-brave="1" aria-label="提高胆识">+</button></span></label>
+          <label><span data-i18n="demo.fate.brave"></span><span class="stepper"><button type="button" data-brave="-1" data-i18n-attr="aria-label:demo.fate.braveDec" data-i18n="ui.dec"></button><output id="fateBrave" data-i18n-dynamic>0</output><button type="button" data-brave="1" data-i18n-attr="aria-label:demo.fate.braveInc" data-i18n="ui.inc"></button></span></label>
         </div>
-        <div class="odds" id="fateOdds" aria-label="结果概率"></div>
+        <div class="odds" id="fateOdds" data-i18n-dynamic data-i18n-attr="aria-label:demo.fate.oddsLabel"></div>
         <div class="fate__stage">
-          <div class="fate__token" id="fateToken" aria-live="polite">?</div>
+          <div class="fate__token" id="fateToken" aria-live="polite" data-i18n-dynamic>?</div>
           <div class="fate__buttons">
-            <button type="button" class="btn btn--ink btn--sm" id="fateRoll">掷骰</button>
-            <button type="button" class="btn btn--outline btn--sm" id="fateReroll" disabled>花 1 意志重投</button>
+            <button type="button" class="btn btn--ink btn--sm" id="fateRoll" data-i18n-dynamic></button>
+            <button type="button" class="btn btn--outline btn--sm" id="fateReroll" data-i18n-dynamic disabled></button>
           </div>
         </div>
         <ol class="outcomes" id="fateOutcomes">
-          <li data-tier="bad"><span class="outcomes__range">1–6</span><p>手指猛地收紧，留下青紫的指印。<b>压抑值 −1</b>。</p></li>
-          <li data-tier="mid"><span class="outcomes__range">7–9</span><p>它松开了，缩回腐叶里。什么也没有发生。</p></li>
-          <li data-tier="good"><span class="outcomes__range">10+</span><p>它把一枚温热的种子放进你掌心。<b>获得稀有素材「低语种子」，胆识 +1</b>。</p></li>
+          <li data-tier="bad"><span class="outcomes__range" data-i18n-dynamic>1–6</span><p data-i18n="demo.fate.outcome.bad"></p></li>
+          <li data-tier="mid"><span class="outcomes__range" data-i18n-dynamic>7–9</span><p data-i18n="demo.fate.outcome.mid"></p></li>
+          <li data-tier="good"><span class="outcomes__range" data-i18n-dynamic>10+</span><p data-i18n="demo.fate.outcome.good"></p></li>
         </ol>
-        <p class="fate__stats">意志 <output id="fateWill">3</output> · 命运值 <output id="fateFate">0</output> · 本次演示：罚 <output id="fateBad">0</output> / 平 <output id="fateMid">0</output> / 奖 <output id="fateGood">0</output></p>
+        <p class="fate__stats"><span data-i18n="demo.fate.stats.will"></span><output id="fateWill" data-i18n-dynamic>3</output><span data-i18n="demo.fate.stats.fate"></span><output id="fateFate" data-i18n-dynamic>0</output><span data-i18n="demo.fate.stats.bad"></span><output id="fateBad" data-i18n-dynamic>0</output><span data-i18n="demo.fate.stats.mid"></span><output id="fateMid" data-i18n-dynamic>0</output><span data-i18n="demo.fate.stats.good"></span><output id="fateGood" data-i18n-dynamic>0</output></p>
       </div>
     </article>
 
     <!-- 06 负面特性 -->
     <article class="rule">
       <div class="rule__text">
-        <p class="rule__pillar">Pillar · 接受弱点，克服弱点</p>
-        <h4 class="rule__title"><span class="title-en">Flaws Open Doors</span>弱点即钥匙</h4>
-        <p class="rule-lede">猎人很容易背上永久的负面特性。但在许多事件里，最好的选项只对有缺陷的人开放。</p>
+        <p class="rule__pillar" data-i18n="rules.flaw.pillar"></p>
+        <h4 class="rule__title" data-i18n="rules.flaw.title"></h4>
+        <p class="rule-lede" data-i18n="rules.flaw.lede"></p>
         <ol class="diamonds">
-          <li>负面特性来得频繁：受伤、恐惧、目睹同伴的死亡……</li>
-          <li>大量事件带有「需要某特性」的选项，奖励往往比普通选项更好。</li>
-          <li>有些选项会让负面特性被<span class="kw">内化</span>，变成新的长处。</li>
-          <li>「不完美的角色」不再只是损失。</li>
+          <li data-i18n="rules.flaw.1"></li>
+          <li data-i18n="rules.flaw.2"></li>
+          <li data-i18n="rules.flaw.3"></li>
+          <li data-i18n="rules.flaw.4"></li>
         </ol>
       </div>
       <div class="demo demo--flaw" id="flawDemo">
         <div class="traits">
-          <p class="traits__label">猎人的特性（点击切换）</p>
-          <button type="button" class="trait" data-trait="胆怯" aria-pressed="true"><strong>胆怯</strong><span>力量 −1</span></button>
-          <button type="button" class="trait" data-trait="失聪" aria-pressed="false"><strong>失聪</strong><span>看不到声音类线索</span></button>
+          <p class="traits__label" data-i18n="demo.flaw.traitsLabel"></p>
+          <button type="button" class="trait" data-trait="timid" aria-pressed="true"><strong data-i18n="demo.flaw.trait.timid.name"></strong><span data-i18n="demo.flaw.trait.timid.effect"></span></button>
+          <button type="button" class="trait" data-trait="deaf" aria-pressed="false"><strong data-i18n="demo.flaw.trait.deaf.name"></strong><span data-i18n="demo.flaw.trait.deaf.effect"></span></button>
         </div>
         <div class="eventcard">
-          <p class="eventcard__kicker">- 狩猎事件 · 示例 -</p>
-          <p class="eventcard__title">无声的回廊</p>
-          <p class="eventcard__body">回廊里挂满了铃铛，没有一只在响。尽头的门，只为某些人打开。</p>
+          <p class="eventcard__kicker" data-i18n="demo.flaw.event.kicker"></p>
+          <p class="eventcard__title" data-i18n="demo.flaw.event.title"></p>
+          <p class="eventcard__body" data-i18n="demo.flaw.event.body"></p>
         </div>
         <ol class="choices" id="flawChoices">
-          <li><button type="button" data-out="你回到营地，什么也没有得到。">原路返回。</button></li>
-          <li><button type="button" data-out="铃声在回廊里回荡了很久——进入胆识判定（见上一页）。">摇响一只铃铛，强行开门。<small>胆识判定</small></button></li>
-          <li><button type="button" data-need="失聪" data-out="你听不见铃声，也就不会被它困住。在尽头，你取下了唯一一只会响的铃：获得饰品「静默之铃」。">径直走过回廊。</button></li>
-          <li><button type="button" data-need="胆怯" data-out="铃铛把发抖的你当成了同类。你学会了如何不被注意：「胆怯」被内化，额外获得 +1 闪避。">蜷缩在墙角，等它们安静。</button></li>
+          <li><button type="button" data-out-key="demo.flaw.out.1" data-i18n="demo.flaw.choice.1"></button></li>
+          <li><button type="button" data-out-key="demo.flaw.out.2" data-i18n="demo.flaw.choice.2"></button></li>
+          <li><button type="button" data-need="deaf" data-out-key="demo.flaw.out.3" data-i18n="demo.flaw.choice.3"></button></li>
+          <li><button type="button" data-need="timid" data-out-key="demo.flaw.out.4" data-i18n="demo.flaw.choice.4"></button></li>
         </ol>
-        <p class="demo__log" id="flawLog" aria-live="polite">选择一个选项。</p>
-        <p class="fineprint">原创示例事件</p>
+        <p class="demo__log" id="flawLog" aria-live="polite" data-i18n-dynamic></p>
+        <p class="fineprint" data-i18n="demo.flaw.fineprint"></p>
       </div>
     </article>
   </div>
 
   <div class="rules__controls">
-    <button type="button" class="gallery__btn" data-rules-dir="-1" aria-label="上一个机制">←</button>
-    <span class="gallery__count" id="rulesCount">01 / 06</span>
-    <button type="button" class="gallery__btn" data-rules-dir="1" aria-label="下一个机制">→</button>
+    <button type="button" class="gallery__btn" data-rules-dir="-1" data-i18n-attr="aria-label:rules.prev" data-i18n="ui.arrowPrev"></button>
+    <span class="gallery__count" id="rulesCount" data-i18n-dynamic>01 / 06</span>
+    <button type="button" class="gallery__btn" data-rules-dir="1" data-i18n-attr="aria-label:rules.next" data-i18n="ui.arrowNext"></button>
   </div>
 </section>
 
 <a class="next-chapter" href="#/core" style="--door: var(--ch2)">
-  <span class="next-chapter__label">翻到下一章</span>
-  <span class="next-chapter__title"><span class="title-en">Chapter II</span>内核<span aria-hidden="true">→</span></span>
+  <span class="next-chapter__label" data-i18n="ch1.next.label"></span>
+  <span class="next-chapter__title" data-i18n="ch1.next.title"></span>
 </a>
 </article>
 
 <!-- ============ 第二章 内核 ============ -->
 <article class="chapter" id="ch2" role="tabpanel" data-route="core" style="--turn: var(--ch2)" hidden>
-<section class="door" data-chapter="第二章 · 内核" style="--door: var(--ch2)">
+<section class="door" data-chapter-key="chapter.core" style="--door: var(--ch2)">
   <div class="door__pattern" data-pattern="T-01"></div>
-  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-02" data-label="内核纹章" data-ratio="1/1"></div></div>
-  <p class="door__num">Chapter II</p>
-  <h2 class="door__title"><span class="title-en">The Core</span><span class="title-cn">内核</span></h2>
+  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-02" data-label-key="slot.E-02" data-ratio="1/1"></div></div>
+  <p class="door__num" data-i18n="ch2.door.num"></p>
+  <h2 class="door__title"><span class="title-en" data-i18n="ch2.door.titleEn"></span><span class="title-cn" data-i18n="ch2.door.titleCn"></span></h2>
 </section>
 
-<section class="credo page" data-chapter="第二章 · 内核">
-  <p class="kicker" data-reveal>- Credo -</p>
-  <p class="credo__text" data-reveal><span class="initial initial--lg" aria-hidden="true">在</span><span class="sr-only">在</span>这个世界，力量来自意志。坚定的人变得强大；恐惧与怯懦，会成为身体上的弱点。而弱点，可以被接受，也可以被克服。</p>
+<section class="credo page" data-chapter-key="chapter.core">
+  <p class="kicker" data-reveal data-i18n="ch2.credo.kicker"></p>
+  <p class="credo__text" data-reveal><span class="initial initial--lg" aria-hidden="true" data-i18n="ch2.credo.initial"></span><span class="sr-only" data-i18n="ch2.credo.initial"></span><span data-i18n="ch2.credo.rest"></span></p>
   <ul class="credo__words" data-reveal>
-    <li>压抑</li><li>原始</li><li>美</li>
+    <li data-i18n="ch2.credo.word.1"></li><li data-i18n="ch2.credo.word.2"></li><li data-i18n="ch2.credo.word.3"></li>
   </ul>
 </section>
 
 <!-- 静态宽银幕插页：现有第 11 版插画 -->
-<section class="still" data-chapter="第二章 · 内核">
+<section class="still" data-chapter-key="chapter.core">
   <figure class="still__frame" data-reveal>
-    <div class="slot slot--bleed slot--dark" data-asset="existing/procession" data-src="assets/existing/procession.webp" data-label="穿越风暴的人" data-ratio="16/9"></div>
-    <figcaption class="still__caption"><span class="title-en">Crossing</span>穿越风暴的人<small>概念探索图 · 非最终美术</small></figcaption>
+    <div class="slot slot--bleed slot--dark" data-asset="existing/procession" data-src="assets/existing/procession.webp" data-label-key="slot.procession" data-ratio="16/9"></div>
+    <figcaption class="still__caption" data-i18n="ch2.still.caption"></figcaption>
   </figure>
 </section>
 
 <!-- 故事事件式跨页 ×3 -->
-<section class="spread spread--art-left page event" data-chapter="第二章 · 内核">
-  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-01" data-label="内化：恐惧的人，与站直的影子" data-ratio="2/3"></div></div></div>
+<section class="spread spread--art-left page event" data-chapter-key="chapter.core">
+  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-01" data-label-key="slot.K-01" data-ratio="2/3"></div></div></div>
   <div class="spread__page">
     <div class="title-block" data-reveal>
-      <p class="kicker">- Core I -</p>
-      <h3 class="title-en">Internalize</h3>
-      <p class="title-cn">接受弱点</p>
+      <p class="kicker" data-i18n="ch2.internalize.kicker"></p>
+      <h3 class="title-en" data-i18n="ch2.internalize.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch2.internalize.titleCn"></p>
     </div>
-    <p class="rule-lede">负面的<span class="kw">特性</span>不是终点。它可以被「内化」，也可以被「克服」。</p>
+    <p class="rule-lede" data-i18n="ch2.internalize.lede"></p>
     <div class="outcome">
-      <p class="outcome__head">例：胆怯</p>
-      <div class="outcome__row"><span class="badge">原状</span><p>力量 −1。</p></div>
-      <div class="outcome__row"><span class="badge badge--warm">内化</span><p>保留原本效果，同时获得正面效果：额外 +1 闪避。</p></div>
-      <div class="outcome__row"><span class="badge badge--warm">克服</span><p>无视负面效果，变为「已克服的胆怯」。</p></div>
+      <p class="outcome__head" data-i18n="ch2.internalize.example"></p>
+      <div class="outcome__row"><span class="badge" data-i18n="ch2.internalize.base.badge"></span><p data-i18n="ch2.internalize.base.text"></p></div>
+      <div class="outcome__row"><span class="badge badge--warm" data-i18n="ch2.internalize.internalized.badge"></span><p data-i18n="ch2.internalize.internalized.text"></p></div>
+      <div class="outcome__row"><span class="badge badge--warm" data-i18n="ch2.internalize.overcome.badge"></span><p data-i18n="ch2.internalize.overcome.text"></p></div>
     </div>
   </div>
 </section>
 
-<section class="spread spread--art-right page event" data-chapter="第二章 · 内核">
-  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-02" data-label="意志：黑日下的誓约" data-ratio="2/3"></div></div></div>
+<section class="spread spread--art-right page event" data-chapter-key="chapter.core">
+  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-02" data-label-key="slot.K-02" data-ratio="2/3"></div></div></div>
   <div class="spread__page">
     <div class="title-block" data-reveal>
-      <p class="kicker">- Core II -</p>
-      <h3 class="title-en">The Unconquerable</h3>
-      <p class="title-cn">不可战胜的存在</p>
+      <p class="kicker" data-i18n="ch2.unconquerable.kicker"></p>
+      <h3 class="title-en" data-i18n="ch2.unconquerable.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch2.unconquerable.titleCn"></p>
     </div>
-    <p class="rule-lede">极其强大的存在会被人们称为神。但任何生物，都是可以被杀死的。</p>
-    <p>某些 Boss 带有「不可战胜的存在」标记。猎人需要用特殊手段一层层消除它；当层数被完全清除，战斗将迎来<span class="kw">突破</span>。</p>
-    <blockquote class="pull">“神没有回应。也许，祂相信你能独自处理这场战斗。”<cite>事件《黑暗中的祈祷》</cite></blockquote>
+    <p class="rule-lede" data-i18n="ch2.unconquerable.lede"></p>
+    <p data-i18n="ch2.unconquerable.body"></p>
+    <blockquote class="pull"><span data-i18n="ch2.unconquerable.quote"></span><cite data-i18n="ch2.unconquerable.cite"></cite></blockquote>
   </div>
 </section>
 
-<section class="spread spread--art-left page event" data-chapter="第二章 · 内核">
-  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-03" data-label="失去：乌鸦带回的留言" data-ratio="2/3"></div></div></div>
+<section class="spread spread--art-left page event" data-chapter-key="chapter.core">
+  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-03" data-label-key="slot.K-03" data-ratio="2/3"></div></div></div>
   <div class="spread__page">
     <div class="title-block" data-reveal>
-      <p class="kicker">- Core III -</p>
-      <h3 class="title-en">Loss &amp; Legacy</h3>
-      <p class="title-cn">失去与传承</p>
+      <p class="kicker" data-i18n="ch2.loss.kicker"></p>
+      <h3 class="title-en" data-i18n="ch2.loss.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch2.loss.titleCn"></p>
     </div>
-    <p class="rule-lede">死亡会频繁发生。重要的是，死去的人留下了什么。</p>
+    <p class="rule-lede" data-i18n="ch2.loss.lede"></p>
     <ol class="diamonds">
-      <li><strong>激励</strong>：猎人死去时，其余猎人受到激励，获得新的战斗技艺或成长。</li>
-      <li><strong>失踪</strong>：有些人并没有死。很久以后，他们的遗物会在狩猎中出现，或在日记里留给某人一句话。</li>
-      <li><strong>记住名字</strong>：某些事件会要求你说出一位死去同伴的名字。</li>
+      <li data-i18n="ch2.loss.1"></li>
+      <li data-i18n="ch2.loss.2"></li>
+      <li data-i18n="ch2.loss.3"></li>
     </ol>
-    <p class="note">连续通过死亡判定，可能触发「不屈意志」；见证太多死亡的人，会成为「送葬人」。</p>
+    <p class="note" data-i18n="ch2.loss.note"></p>
   </div>
 </section>
 
 <a class="next-chapter" href="#/art" style="--door: var(--ch3)">
-  <span class="next-chapter__label">翻到下一章</span>
-  <span class="next-chapter__title"><span class="title-en">Chapter III</span>美术<span aria-hidden="true">→</span></span>
+  <span class="next-chapter__label" data-i18n="ch2.next.label"></span>
+  <span class="next-chapter__title" data-i18n="ch2.next.title"></span>
 </a>
 </article>
 
 <!-- ============ 第三章 美术 ============ -->
 <article class="chapter" id="ch3" role="tabpanel" data-route="art" style="--turn: var(--ch3)" hidden>
-<section class="door" data-chapter="第三章 · 美术" style="--door: var(--ch3)">
+<section class="door" data-chapter-key="chapter.art" style="--door: var(--ch3)">
   <div class="door__pattern" data-pattern="T-01"></div>
-  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-03" data-label="美术纹章" data-ratio="1/1"></div></div>
-  <p class="door__num">Chapter III</p>
-  <h2 class="door__title"><span class="title-en">The Art</span><span class="title-cn">美术</span></h2>
+  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-03" data-label-key="slot.E-03" data-ratio="1/1"></div></div>
+  <p class="door__num" data-i18n="ch3.door.num"></p>
+  <h2 class="door__title"><span class="title-en" data-i18n="ch3.door.titleEn"></span><span class="title-cn" data-i18n="ch3.door.titleCn"></span></h2>
 </section>
 
-<section class="manifesto page" data-chapter="第三章 · 美术">
+<section class="manifesto page" data-chapter-key="chapter.art">
   <div class="title-block" data-reveal>
-    <p class="kicker">- Art Direction -</p>
-    <h3 class="title-en">Ink, Mass &amp; a Small Warm Light</h3>
-    <p class="title-cn">线条、色块，与一点暖光</p>
+    <p class="kicker" data-i18n="ch3.art.kicker"></p>
+    <h3 class="title-en" data-i18n="ch3.art.titleEn"></h3>
+    <p class="title-cn" data-i18n="ch3.art.titleCn"></p>
   </div>
   <ol class="principles">
-    <li data-reveal><span class="principles__num">i</span><h4>线条负责形体</h4><p>等粗、等深、清晰可见的墨线。明暗只由线的疏密决定：暗面密，亮面疏，甚至留白。</p></li>
-    <li data-reveal><span class="principles__num">ii</span><h4>颜色负责体积</h4><p>宽阔连续的半厚涂色块。柔和的过渡只出现在光源、雾与轮廓光上。</p></li>
-    <li data-reveal><span class="principles__num">iii</span><h4>冷暗中的一点暖光</h4><p>世界是冷的。只有人的意志——灯火、余烬、掌心的火——是暖色。</p></li>
+    <li data-reveal><span class="principles__num" data-i18n="ch3.principle.1.num"></span><h4 data-i18n="ch3.principle.1.title"></h4><p data-i18n="ch3.principle.1.body"></p></li>
+    <li data-reveal><span class="principles__num" data-i18n="ch3.principle.2.num"></span><h4 data-i18n="ch3.principle.2.title"></h4><p data-i18n="ch3.principle.2.body"></p></li>
+    <li data-reveal><span class="principles__num" data-i18n="ch3.principle.3.num"></span><h4 data-i18n="ch3.principle.3.title"></h4><p data-i18n="ch3.principle.3.body"></p></li>
   </ol>
-  <p class="manifesto__foot">生物设计：部分拟人、用环境解释身体结构；追求威胁感与美感，而不是恶心。</p>
+  <p class="manifesto__foot" data-i18n="ch3.art.foot"></p>
 </section>
 
 <!-- 图鉴 ×2 -->
-<section class="spread spread--art-left bestiary" data-chapter="第三章 · 美术">
-  <div class="spread__art spread__art--dark"><div class="slot slot--bleed slot--dark" data-asset="A-01" data-label="图鉴：玻璃骨髓圣像（特写）" data-ratio="4/5"></div></div>
+<section class="spread spread--art-left bestiary" data-chapter-key="chapter.art">
+  <div class="spread__art spread__art--dark"><div class="slot slot--bleed slot--dark" data-asset="A-01" data-label-key="slot.A-01" data-ratio="4/5"></div></div>
   <div class="spread__page spread__page--center">
-    <div class="bestiary__crest"><div class="slot slot--emblem" data-asset="E-06" data-label="决战纹章" data-ratio="1/1"></div></div>
-    <p class="bestiary__name"><i class="dot" style="--dot: var(--ember)"></i>玻璃骨髓圣像</p>
-    <p class="bestiary__en">Glass Marrow Seraph</p>
-    <p class="bestiary__desc">六足、逆关节的捕食者。折叠的掌形头颅没有面孔；<br>教堂般透明的胸腔里，悬浮着琥珀色的骨髓。</p>
-    <p class="fineprint">概念探索</p>
+    <div class="bestiary__crest"><div class="slot slot--emblem" data-asset="E-06" data-label-key="slot.E-06" data-ratio="1/1"></div></div>
+    <p class="bestiary__name"><i class="dot" style="--dot: var(--ember)"></i><span data-i18n="ch3.bestiary.1.name"></span></p>
+    <p class="bestiary__en" data-i18n="ch3.bestiary.1.en"></p>
+    <p class="bestiary__desc" data-i18n="ch3.bestiary.1.desc"></p>
+    <p class="fineprint" data-i18n="ch3.bestiary.1.fineprint"></p>
   </div>
 </section>
 
-<section class="spread spread--art-right bestiary" data-chapter="第三章 · 美术">
-  <div class="spread__art spread__art--dark"><div class="slot slot--bleed slot--dark" data-asset="A-02" data-label="图鉴：空手唱诗团（特写）" data-ratio="4/5"></div></div>
+<section class="spread spread--art-right bestiary" data-chapter-key="chapter.art">
+  <div class="spread__art spread__art--dark"><div class="slot slot--bleed slot--dark" data-asset="A-02" data-label-key="slot.A-02" data-ratio="4/5"></div></div>
   <div class="spread__page spread__page--center">
-    <div class="bestiary__crest"><div class="slot slot--emblem" data-asset="E-05" data-label="狩猎纹章" data-ratio="1/1"></div></div>
-    <p class="bestiary__name"><i class="dot" style="--dot: var(--ember)"></i>空手唱诗团</p>
-    <p class="bestiary__en">Choir of Empty Hands</p>
-    <p class="bestiary__desc">黑日般的空洞头环，象牙色的掌片躯干。<br>六只手臂的掌心里，各有一张无声的嘴。</p>
-    <p class="fineprint">概念探索</p>
+    <div class="bestiary__crest"><div class="slot slot--emblem" data-asset="E-05" data-label-key="slot.E-05" data-ratio="1/1"></div></div>
+    <p class="bestiary__name"><i class="dot" style="--dot: var(--ember)"></i><span data-i18n="ch3.bestiary.2.name"></span></p>
+    <p class="bestiary__en" data-i18n="ch3.bestiary.2.en"></p>
+    <p class="bestiary__desc" data-i18n="ch3.bestiary.2.desc"></p>
+    <p class="fineprint" data-i18n="ch3.bestiary.2.fineprint"></p>
   </div>
 </section>
 
 <!-- 装备部件图：现有第 10 版装备 -->
-<section class="plate page" data-chapter="第三章 · 美术">
+<section class="plate page" data-chapter-key="chapter.art">
   <div class="title-block" data-reveal>
-    <p class="kicker">- Equipment Plate -</p>
-    <h3 class="title-en">Storm Crossing Set</h3>
-    <p class="title-cn">渡风暴者套装</p>
+    <p class="kicker" data-i18n="ch3.plate.kicker"></p>
+    <h3 class="title-en" data-i18n="ch3.plate.titleEn"></h3>
+    <p class="title-cn" data-i18n="ch3.plate.titleCn"></p>
   </div>
   <figure class="plate__figure">
-    <div class="plate__img"><div class="slot" data-asset="C-01" data-label="装备概念稿：罩灯、长矛、肋盾、旅行胫甲（手绘草稿或厚涂）" data-ratio="3/2" data-fallback="assets/existing/equipment.webp" data-fallback-alt="罩灯、长矛、肋盾与旅行胫甲的装备设定图"></div></div>
+    <div class="plate__img"><div class="slot" data-asset="C-01" data-label-key="slot.C-01" data-ratio="3/2" data-fallback="assets/existing/equipment.webp" data-fallback-alt-key="slot.C-01.alt"></div></div>
     <ul class="plate__labels">
-      <li style="--x: 16%"><span>罩灯</span><small>Hooded Lantern</small></li>
-      <li style="--x: 34%"><span>长矛</span><small>Hook Spear</small></li>
-      <li style="--x: 55%"><span>肋盾</span><small>Rib Shield</small></li>
-      <li style="--x: 82%"><span>旅行胫甲</span><small>Travel Greaves</small></li>
+      <li style="--x: 16%"><span data-i18n="ch3.plate.lantern"></span><small data-i18n="ch3.plate.lanternSub"></small></li>
+      <li style="--x: 34%"><span data-i18n="ch3.plate.spear"></span><small data-i18n="ch3.plate.spearSub"></small></li>
+      <li style="--x: 55%"><span data-i18n="ch3.plate.shield"></span><small data-i18n="ch3.plate.shieldSub"></small></li>
+      <li style="--x: 82%"><span data-i18n="ch3.plate.greaves"></span><small data-i18n="ch3.plate.greavesSub"></small></li>
     </ul>
-    <figcaption>以猎物为原料：兽骨作骨架，鞣过的皮与布作覆面，筋腱与皮绳层层捆扎。金属稀少而珍贵，只用在最要紧的地方。<br>技术是原始的，手艺却一丝不苟——每一件装备都看得出它来自哪一头怪物。</figcaption>
+    <figcaption data-i18n="ch3.plate.caption"></figcaption>
   </figure>
 </section>
 
 <!-- 线稿 / 成品对比 -->
-<section class="compare page" data-chapter="第三章 · 美术">
+<section class="compare page" data-chapter-key="chapter.art">
   <div class="title-block" data-reveal>
-    <p class="kicker">- Line &amp; Colour -</p>
-    <h3 class="title-en">Two Layers</h3>
-    <p class="title-cn">线条层与颜色层</p>
+    <p class="kicker" data-i18n="ch3.compare.kicker"></p>
+    <h3 class="title-en" data-i18n="ch3.compare.titleEn"></h3>
+    <p class="title-cn" data-i18n="ch3.compare.titleCn"></p>
   </div>
   <div class="compare__frame" id="compare" style="--x: 50%">
-    <div class="compare__layer"><div class="slot slot--bleed" data-asset="H-01" data-label="成品（H-01）" data-ratio="16/9" data-fallback="assets/existing/procession.webp" data-fallback-alt="穿越风暴的人"></div></div>
-    <div class="compare__layer compare__layer--top"><div class="slot slot--bleed" data-asset="A-04" data-label="线稿层（A-04：H-01 去色版）" data-ratio="16/9"></div></div>
+    <div class="compare__layer"><div class="slot slot--bleed" data-asset="H-01" data-label-key="slot.H-01.final" data-ratio="16/9" data-fallback="assets/existing/procession.webp" data-fallback-alt-key="slot.procession.alt"></div></div>
+    <div class="compare__layer compare__layer--top"><div class="slot slot--bleed" data-asset="A-04" data-label-key="slot.A-04" data-ratio="16/9"></div></div>
     <div class="compare__handle" aria-hidden="true"></div>
-    <input type="range" min="0" max="100" value="50" class="compare__range" id="compareRange" aria-label="拖动对比线稿与成品">
+    <input type="range" min="0" max="100" value="50" class="compare__range" id="compareRange" data-i18n-attr="aria-label:ch3.compare.rangeLabel">
   </div>
-  <p class="compare__legend"><span>← 线条层</span><span>成品 →</span></p>
+  <p class="compare__legend"><span data-i18n="ch3.compare.legendLine"></span><span data-i18n="ch3.compare.legendFinal"></span></p>
 </section>
 
 <!-- 群像 + UI 组件 -->
-<section class="cast page" data-chapter="第三章 · 美术">
+<section class="cast page" data-chapter-key="chapter.art">
   <div class="title-block" data-reveal>
-    <p class="kicker">- The Hunters -</p>
-    <h3 class="title-en">Cast</h3>
-    <p class="title-cn">猎人群像</p>
+    <p class="kicker" data-i18n="ch3.cast.kicker"></p>
+    <h3 class="title-en" data-i18n="ch3.cast.titleEn"></h3>
+    <p class="title-cn" data-i18n="ch3.cast.titleCn"></p>
   </div>
-  <div class="slot" data-asset="A-03" data-label="猎人群像：五人一排，白底" data-ratio="16/9"></div>
+  <div class="slot" data-asset="A-03" data-label-key="slot.A-03" data-ratio="16/9"></div>
   <div class="kit">
-    <p class="kit__title">界面组件 · 克制的巴洛克</p>
+    <p class="kit__title" data-i18n="ch3.kit.title"></p>
     <div class="kit__row">
-      <img src="assets/existing/frame-v.webp" alt="竖向巴洛克边框" loading="lazy">
-      <img src="assets/existing/frame-sq.webp" alt="方形巴洛克边框" loading="lazy">
-      <img src="assets/existing/frame-h.webp" alt="横向巴洛克边框" loading="lazy">
+      <img src="assets/existing/frame-v.webp" data-i18n-attr="alt:ch3.kit.frameV" loading="lazy">
+      <img src="assets/existing/frame-sq.webp" data-i18n-attr="alt:ch3.kit.frameSq" loading="lazy">
+      <img src="assets/existing/frame-h.webp" data-i18n-attr="alt:ch3.kit.frameH" loading="lazy">
     </div>
   </div>
 </section>
 
 <!-- 尾声：一屏横向画廊（无字） -->
-<section class="gallery" data-chapter="第三章 · 美术 · 尾声">
-  <div class="gallery__track" id="galleryTrack" tabindex="0" aria-label="尾声画廊，可左右滑动">
-    <figure class="gallery__item"><div class="slot slot--dark" data-asset="Z-01" data-label="尾声 I：手掌石桥与黑日" data-ratio="21/9"></div></figure>
-    <figure class="gallery__item"><div class="slot slot--dark" data-asset="Z-02" data-label="尾声 II：遗迹圣物花园" data-ratio="21/9"></div></figure>
-    <figure class="gallery__item"><div class="slot slot--dark" data-asset="Z-03" data-label="尾声 III：脊椎钟塔的淹没村落" data-ratio="21/9"></div></figure>
+<section class="gallery" data-chapter-key="chapter.epilogue">
+  <div class="gallery__track" id="galleryTrack" tabindex="0" data-i18n-attr="aria-label:ch3.gallery.label">
+    <figure class="gallery__item"><div class="slot slot--dark" data-asset="Z-01" data-label-key="slot.Z-01" data-ratio="21/9"></div></figure>
+    <figure class="gallery__item"><div class="slot slot--dark" data-asset="Z-02" data-label-key="slot.Z-02" data-ratio="21/9"></div></figure>
+    <figure class="gallery__item"><div class="slot slot--dark" data-asset="Z-03" data-label-key="slot.Z-03" data-ratio="21/9"></div></figure>
   </div>
   <div class="gallery__controls">
-    <button type="button" class="gallery__btn" data-dir="-1" aria-label="上一幅">←</button>
-    <span class="gallery__count" id="galleryCount">01 / 03</span>
-    <button type="button" class="gallery__btn" data-dir="1" aria-label="下一幅">→</button>
+    <button type="button" class="gallery__btn" data-dir="-1" data-i18n-attr="aria-label:ch3.gallery.prev" data-i18n="ui.arrowPrev"></button>
+    <span class="gallery__count" id="galleryCount" data-i18n-dynamic>01 / 03</span>
+    <button type="button" class="gallery__btn" data-dir="1" data-i18n-attr="aria-label:ch3.gallery.next" data-i18n="ui.arrowNext"></button>
   </div>
 </section>
 
 <a class="next-chapter" href="#/contact" style="--door: var(--night)">
-  <span class="next-chapter__label">翻到最后一页</span>
-  <span class="next-chapter__title"><span class="title-en">Credits</span>合作与联系<span aria-hidden="true">→</span></span>
+  <span class="next-chapter__label" data-i18n="ch3.next.label"></span>
+  <span class="next-chapter__title" data-i18n="ch3.next.title"></span>
 </a>
 </article>
 
 <!-- ============ 合作 ============ -->
 <article class="chapter" id="contact" role="tabpanel" data-route="contact" style="--turn: var(--night)" hidden>
-  <section class="credits" data-chapter="合作">
-    <p class="credits__title">Hunting in Darkness</p>
+  <section class="credits" data-chapter-key="chapter.contact">
+    <p class="credits__title" data-i18n="ui.book"></p>
     <dl class="credits__list" data-reveal>
-      <dt>制作人</dt><dd>Leon Zhou / 周子昂</dd>
-      <dt>概念探索图</dt><dd>AI 生成探索，非最终美术</dd>
+      <dt data-i18n="credits.producer.label"></dt><dd data-i18n="credits.producer.value"></dd>
+      <dt data-i18n="credits.concept.label"></dt><dd data-i18n="credits.concept.value"></dd>
     </dl>
   </section>
 
-  <section class="contact page" data-chapter="合作">
+  <section class="contact page" data-chapter-key="chapter.contact">
     <div class="title-block" data-reveal>
-      <p class="kicker">- For Partners &amp; Players -</p>
-      <h3 class="title-en">Fact Sheet</h3>
-      <p class="title-cn">概况与联系</p>
+      <p class="kicker" data-i18n="contact.kicker"></p>
+      <h3 class="title-en" data-i18n="contact.titleEn"></h3>
+      <p class="title-cn" data-i18n="contact.titleCn"></p>
     </div>
     <table class="facts">
-      <tr><th>类型</th><td>黑暗幻想 · 战役制 · 卡牌与骰子</td></tr>
-      <tr><th>核心循环</th><td>营地 → 狩猎 → 决战</td></tr>
-      <tr><th>开发阶段</th><td>设计与原型</td></tr>
-      <tr><th>平台</th><td>待定</td></tr>
-      <tr><th>联系</th><td><a href="mailto:leonzhouziang@gmail.com">leonzhouziang@gmail.com</a></td></tr>
-      <tr><th>个人网站</th><td><a href="https://hubr1zz.github.io/Portfolio/" target="_blank" rel="noopener">hubr1zz.github.io/Portfolio</a></td></tr>
+      <tr><th data-i18n="contact.genre.label"></th><td data-i18n="contact.genre.value"></td></tr>
+      <tr><th data-i18n="contact.loop.label"></th><td data-i18n="contact.loop.value"></td></tr>
+      <tr><th data-i18n="contact.stage.label"></th><td data-i18n="contact.stage.value"></td></tr>
+      <tr><th data-i18n="contact.platform.label"></th><td data-i18n="contact.platform.value"></td></tr>
+      <tr><th data-i18n="contact.email.label"></th><td><a href="mailto:leonzhouziang@gmail.com" data-i18n="contact.email.value"></a></td></tr>
+      <tr><th data-i18n="contact.site.label"></th><td><a href="https://hubr1zz.github.io/Portfolio/" target="_blank" rel="noopener" data-i18n="contact.site.value"></a></td></tr>
     </table>
     <div class="contact__cta">
-      <a class="btn btn--ink" href="mailto:leonzhouziang@gmail.com">合作洽谈</a>
-      <a class="btn btn--outline" href="#/gameplay">从第一章读起</a>
+      <a class="btn btn--ink" href="mailto:leonzhouziang@gmail.com" data-i18n="contact.cta.partner"></a>
+      <a class="btn btn--outline" href="#/gameplay" data-i18n="contact.cta.start"></a>
     </div>
-    <p class="fineprint">本页所有图像均为概念探索，非最终美术。</p>
+    <p class="fineprint" data-i18n="contact.fineprint"></p>
   </section>
 </article>
 </div>
 
 <footer class="colophon">
-  <span>Hunting in Darkness</span>
-  <a href="#/contact">合作洽谈</a>
-  <a href="#hero">回到开头</a>
+  <span data-i18n="ui.book"></span>
+  <a href="#/contact" data-i18n="footer.partner"></a>
+  <a href="#hero" data-i18n="footer.top"></a>
 </footer>
 
 </main>
 
+<script src="js/lang/zh.js"></script>
+<script src="js/lang/en.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
