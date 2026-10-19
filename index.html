@@ -302,16 +302,22 @@
       <p class="title-cn" data-i18n="ch1.showdown.titleCn"></p>
     </div>
     <p class="rule-lede" data-i18n="ch1.showdown.lede"></p>
+    <p class="diamonds-head" data-i18n="ch1.showdown.hunters"></p>
     <ol class="diamonds">
-      <li data-i18n="ch1.showdown.1"></li>
-      <li data-i18n="ch1.showdown.2"></li>
-      <li data-i18n="ch1.showdown.3"></li>
-      <li data-i18n="ch1.showdown.4"></li>
+      <li data-i18n="ch1.showdown.hunter.1"></li>
+      <li data-i18n="ch1.showdown.hunter.2"></li>
+      <li data-i18n="ch1.showdown.hunter.3"></li>
+      <li data-i18n="ch1.showdown.hunter.4"></li>
+    </ol>
+    <p class="diamonds-head" data-i18n="ch1.showdown.monster"></p>
+    <ol class="diamonds">
+      <li data-i18n="ch1.showdown.monster.1"></li>
+      <li data-i18n="ch1.showdown.monster.2"></li>
     </ol>
   </div>
 </section>
 
-<!-- 核心机制画廊：六个设计支柱，每页一条规则 + 可操作示例 -->
+<!-- 核心机制画廊：四个设计支柱，每页一条规则 + 可操作示例 -->
 <section class="rules page" data-chapter-key="chapter.gameplay">
   <div class="title-block" data-reveal>
     <p class="kicker" data-i18n="rules.kicker"></p>
@@ -324,11 +330,9 @@
     <button type="button" data-goto="1" data-i18n="rules.index.2"></button>
     <button type="button" data-goto="2" data-i18n="rules.index.3"></button>
     <button type="button" data-goto="3" data-i18n="rules.index.4"></button>
-    <button type="button" data-goto="4" data-i18n="rules.index.5"></button>
-    <button type="button" data-goto="5" data-i18n="rules.index.6"></button>
   </nav>
 
-  <div class="rules__track" id="rulesTrack" tabindex="0" data-i18n-attr="aria-label:rules.trackLabel">
+  <div class="rules__track" tabindex="0" data-i18n-attr="aria-label:rules.trackLabel">
 
     <!-- 01 翻面行动 -->
     <article class="rule">
@@ -442,8 +446,119 @@
         <p class="fineprint" data-i18n="demo.gear.fineprint"></p>
       </div>
     </article>
+  </div>
 
-    <!-- 05 事件判定 -->
+  <div class="rules__controls">
+    <button type="button" class="gallery__btn" data-rules-dir="-1" data-i18n-attr="aria-label:rules.prev" data-i18n="ui.arrowPrev"></button>
+    <span class="gallery__count" data-i18n-dynamic>01 / 04</span>
+    <button type="button" class="gallery__btn" data-rules-dir="1" data-i18n-attr="aria-label:rules.next" data-i18n="ui.arrowNext"></button>
+  </div>
+</section>
+
+<a class="next-chapter" href="#/core" style="--door: var(--ch2)">
+  <span class="next-chapter__label" data-i18n="ch1.next.label"></span>
+  <span class="next-chapter__title" data-i18n="ch1.next.title"></span>
+</a>
+</article>
+
+<!-- ============ 第二章 内核 ============ -->
+<article class="chapter" id="ch2" role="tabpanel" data-route="core" style="--turn: var(--ch2)" hidden>
+<section class="door" data-chapter-key="chapter.core" style="--door: var(--ch2)">
+  <div class="door__pattern" data-pattern="T-01"></div>
+  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-02" data-label-key="slot.E-02" data-ratio="1/1"></div></div>
+  <p class="door__num" data-i18n="ch2.door.num"></p>
+  <h2 class="door__title"><span class="title-en" data-i18n="ch2.door.titleEn"></span><span class="title-cn" data-i18n="ch2.door.titleCn"></span></h2>
+</section>
+
+<section class="credo page" data-chapter-key="chapter.core">
+  <p class="kicker" data-reveal data-i18n="ch2.credo.kicker"></p>
+  <p class="credo__text" data-reveal><span class="initial" aria-hidden="true" data-i18n="ch2.credo.initial"></span><span class="sr-only" data-i18n="ch2.credo.initial"></span><span data-i18n="ch2.credo.rest"></span></p>
+  <ul class="credo__words" data-reveal>
+    <li data-i18n="ch2.credo.word.1"></li><li data-i18n="ch2.credo.word.2"></li><li data-i18n="ch2.credo.word.3"></li>
+  </ul>
+</section>
+
+<!-- 静态宽银幕插页：现有第 11 版插画 -->
+<section class="still" data-chapter-key="chapter.core">
+  <figure class="still__frame" data-reveal>
+    <div class="slot slot--bleed slot--dark" data-asset="existing/procession" data-src="assets/existing/procession.webp" data-label-key="slot.procession" data-ratio="16/9"></div>
+    <figcaption class="still__caption" data-i18n="ch2.still.caption"></figcaption>
+  </figure>
+</section>
+
+<!-- 故事事件式跨页 ×3 -->
+<section class="spread spread--art-left page event" data-chapter-key="chapter.core">
+  <div class="spread__art"><div class="slot slot--bleed" data-asset="K-01" data-label-key="slot.K-01" data-ratio="3/2"></div></div>
+  <div class="spread__page">
+    <div class="title-block" data-reveal>
+      <p class="kicker" data-i18n="ch2.internalize.kicker"></p>
+      <h3 class="title-en" data-i18n="ch2.internalize.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch2.internalize.titleCn"></p>
+    </div>
+    <p class="rule-lede" data-i18n="ch2.internalize.lede"></p>
+    <div class="outcome">
+      <p class="outcome__head" data-i18n="ch2.internalize.example"></p>
+      <div class="outcome__row"><span class="badge" data-i18n="ch2.internalize.base.badge"></span><p data-i18n="ch2.internalize.base.text"></p></div>
+      <div class="outcome__row"><span class="badge badge--warm" data-i18n="ch2.internalize.internalized.badge"></span><p data-i18n="ch2.internalize.internalized.text"></p></div>
+      <div class="outcome__row"><span class="badge badge--warm" data-i18n="ch2.internalize.overcome.badge"></span><p data-i18n="ch2.internalize.overcome.text"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="spread spread--art-right page event" data-chapter-key="chapter.core">
+  <div class="spread__art"><div class="slot slot--bleed" data-asset="K-02" data-label-key="slot.K-02" data-ratio="3/2"></div></div>
+  <div class="spread__page">
+    <div class="title-block" data-reveal>
+      <p class="kicker" data-i18n="ch2.unconquerable.kicker"></p>
+      <h3 class="title-en" data-i18n="ch2.unconquerable.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch2.unconquerable.titleCn"></p>
+    </div>
+    <p class="rule-lede" data-i18n="ch2.unconquerable.lede"></p>
+    <p data-i18n="ch2.unconquerable.body"></p>
+    <blockquote class="pull"><span data-i18n="ch2.unconquerable.quote"></span><cite data-i18n="ch2.unconquerable.cite"></cite></blockquote>
+  </div>
+</section>
+
+<section class="spread spread--art-left page event" data-chapter-key="chapter.core">
+  <div class="spread__art"><div class="slot slot--bleed" data-asset="K-03" data-label-key="slot.K-03" data-ratio="3/2"></div></div>
+  <div class="spread__page">
+    <div class="title-block" data-reveal>
+      <p class="kicker" data-i18n="ch2.loss.kicker"></p>
+      <h3 class="title-en" data-i18n="ch2.loss.titleEn"></h3>
+      <p class="title-cn" data-i18n="ch2.loss.titleCn"></p>
+    </div>
+    <p class="rule-lede" data-i18n="ch2.loss.lede"></p>
+    <ol class="diamonds">
+      <li data-i18n="ch2.loss.1"></li>
+      <li data-i18n="ch2.loss.2"></li>
+      <li data-i18n="ch2.loss.3"></li>
+    </ol>
+    <p class="note" data-i18n="ch2.loss.note"></p>
+  </div>
+</section>
+
+<!-- 体验支柱：立意 + 两条体验规则 -->
+<section class="rules page" data-chapter-key="chapter.core">
+  <div class="title-block" data-reveal>
+    <p class="kicker" data-i18n="pillars.kicker"></p>
+    <h3 class="title-en" data-i18n="pillars.titleEn"></h3>
+    <p class="title-cn" data-i18n="pillars.titleCn"></p>
+  </div>
+
+  <div class="theme" data-reveal>
+    <p class="theme__label" data-i18n="pillars.theme.label"></p>
+    <p data-i18n="pillars.theme.1"></p>
+    <p data-i18n="pillars.theme.2"></p>
+  </div>
+
+  <nav class="rules__index" data-i18n-attr="aria-label:pillars.indexLabel">
+    <button type="button" data-goto="0" data-i18n="pillars.index.1"></button>
+    <button type="button" data-goto="1" data-i18n="pillars.index.2"></button>
+  </nav>
+
+  <div class="rules__track" tabindex="0" data-i18n-attr="aria-label:pillars.trackLabel">
+
+    <!-- 01 事件判定 -->
     <article class="rule">
       <div class="rule__text">
         <p class="rule__pillar" data-i18n="rules.fate.pillar"></p>
@@ -488,7 +603,7 @@
       </div>
     </article>
 
-    <!-- 06 负面特性 -->
+    <!-- 02 负面特性 -->
     <article class="rule">
       <div class="rule__text">
         <p class="rule__pillar" data-i18n="rules.flaw.pillar"></p>
@@ -525,91 +640,9 @@
   </div>
 
   <div class="rules__controls">
-    <button type="button" class="gallery__btn" data-rules-dir="-1" data-i18n-attr="aria-label:rules.prev" data-i18n="ui.arrowPrev"></button>
-    <span class="gallery__count" id="rulesCount" data-i18n-dynamic>01 / 06</span>
-    <button type="button" class="gallery__btn" data-rules-dir="1" data-i18n-attr="aria-label:rules.next" data-i18n="ui.arrowNext"></button>
-  </div>
-</section>
-
-<a class="next-chapter" href="#/core" style="--door: var(--ch2)">
-  <span class="next-chapter__label" data-i18n="ch1.next.label"></span>
-  <span class="next-chapter__title" data-i18n="ch1.next.title"></span>
-</a>
-</article>
-
-<!-- ============ 第二章 内核 ============ -->
-<article class="chapter" id="ch2" role="tabpanel" data-route="core" style="--turn: var(--ch2)" hidden>
-<section class="door" data-chapter-key="chapter.core" style="--door: var(--ch2)">
-  <div class="door__pattern" data-pattern="T-01"></div>
-  <div class="door__emblem"><div class="slot slot--emblem slot--on-dark" data-asset="E-02" data-label-key="slot.E-02" data-ratio="1/1"></div></div>
-  <p class="door__num" data-i18n="ch2.door.num"></p>
-  <h2 class="door__title"><span class="title-en" data-i18n="ch2.door.titleEn"></span><span class="title-cn" data-i18n="ch2.door.titleCn"></span></h2>
-</section>
-
-<section class="credo page" data-chapter-key="chapter.core">
-  <p class="kicker" data-reveal data-i18n="ch2.credo.kicker"></p>
-  <p class="credo__text" data-reveal><span class="initial initial--lg" aria-hidden="true" data-i18n="ch2.credo.initial"></span><span class="sr-only" data-i18n="ch2.credo.initial"></span><span data-i18n="ch2.credo.rest"></span></p>
-  <ul class="credo__words" data-reveal>
-    <li data-i18n="ch2.credo.word.1"></li><li data-i18n="ch2.credo.word.2"></li><li data-i18n="ch2.credo.word.3"></li>
-  </ul>
-</section>
-
-<!-- 静态宽银幕插页：现有第 11 版插画 -->
-<section class="still" data-chapter-key="chapter.core">
-  <figure class="still__frame" data-reveal>
-    <div class="slot slot--bleed slot--dark" data-asset="existing/procession" data-src="assets/existing/procession.webp" data-label-key="slot.procession" data-ratio="16/9"></div>
-    <figcaption class="still__caption" data-i18n="ch2.still.caption"></figcaption>
-  </figure>
-</section>
-
-<!-- 故事事件式跨页 ×3 -->
-<section class="spread spread--art-left page event" data-chapter-key="chapter.core">
-  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-01" data-label-key="slot.K-01" data-ratio="2/3"></div></div></div>
-  <div class="spread__page">
-    <div class="title-block" data-reveal>
-      <p class="kicker" data-i18n="ch2.internalize.kicker"></p>
-      <h3 class="title-en" data-i18n="ch2.internalize.titleEn"></h3>
-      <p class="title-cn" data-i18n="ch2.internalize.titleCn"></p>
-    </div>
-    <p class="rule-lede" data-i18n="ch2.internalize.lede"></p>
-    <div class="outcome">
-      <p class="outcome__head" data-i18n="ch2.internalize.example"></p>
-      <div class="outcome__row"><span class="badge" data-i18n="ch2.internalize.base.badge"></span><p data-i18n="ch2.internalize.base.text"></p></div>
-      <div class="outcome__row"><span class="badge badge--warm" data-i18n="ch2.internalize.internalized.badge"></span><p data-i18n="ch2.internalize.internalized.text"></p></div>
-      <div class="outcome__row"><span class="badge badge--warm" data-i18n="ch2.internalize.overcome.badge"></span><p data-i18n="ch2.internalize.overcome.text"></p></div>
-    </div>
-  </div>
-</section>
-
-<section class="spread spread--art-right page event" data-chapter-key="chapter.core">
-  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-02" data-label-key="slot.K-02" data-ratio="2/3"></div></div></div>
-  <div class="spread__page">
-    <div class="title-block" data-reveal>
-      <p class="kicker" data-i18n="ch2.unconquerable.kicker"></p>
-      <h3 class="title-en" data-i18n="ch2.unconquerable.titleEn"></h3>
-      <p class="title-cn" data-i18n="ch2.unconquerable.titleCn"></p>
-    </div>
-    <p class="rule-lede" data-i18n="ch2.unconquerable.lede"></p>
-    <p data-i18n="ch2.unconquerable.body"></p>
-    <blockquote class="pull"><span data-i18n="ch2.unconquerable.quote"></span><cite data-i18n="ch2.unconquerable.cite"></cite></blockquote>
-  </div>
-</section>
-
-<section class="spread spread--art-left page event" data-chapter-key="chapter.core">
-  <div class="spread__art spread__art--paper"><div class="framed framed--v"><div class="slot" data-asset="K-03" data-label-key="slot.K-03" data-ratio="2/3"></div></div></div>
-  <div class="spread__page">
-    <div class="title-block" data-reveal>
-      <p class="kicker" data-i18n="ch2.loss.kicker"></p>
-      <h3 class="title-en" data-i18n="ch2.loss.titleEn"></h3>
-      <p class="title-cn" data-i18n="ch2.loss.titleCn"></p>
-    </div>
-    <p class="rule-lede" data-i18n="ch2.loss.lede"></p>
-    <ol class="diamonds">
-      <li data-i18n="ch2.loss.1"></li>
-      <li data-i18n="ch2.loss.2"></li>
-      <li data-i18n="ch2.loss.3"></li>
-    </ol>
-    <p class="note" data-i18n="ch2.loss.note"></p>
+    <button type="button" class="gallery__btn" data-rules-dir="-1" data-i18n-attr="aria-label:pillars.prev" data-i18n="ui.arrowPrev"></button>
+    <span class="gallery__count" data-i18n-dynamic>01 / 02</span>
+    <button type="button" class="gallery__btn" data-rules-dir="1" data-i18n-attr="aria-label:pillars.next" data-i18n="ui.arrowNext"></button>
   </div>
 </section>
 

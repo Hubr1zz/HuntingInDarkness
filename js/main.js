@@ -10,7 +10,7 @@
   const ASSET_EXTENSIONS = ["webp", "png", "jpg"];
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // ---------- 图片槽：assets/<ID>.<ext> 存在则替换占位，否则显示规格 ----------
+  // ---------- 图片槽：assets/<ID>.<ext> 存在则替换占位，否则显示画面说明 ----------
   const loadFirst = (candidates) => new Promise((resolve) => {
     const tryNext = (index) => {
       if (index >= candidates.length)
@@ -26,11 +26,10 @@
   const slotLabel = (slot) => (slot.dataset.labelKey ? t(slot.dataset.labelKey) : "");
 
   const buildPlaceholder = (slot) => {
-    const { asset, ratio = "" } = slot.dataset;
     const ph = document.createElement("div");
     ph.className = "slot__ph";
     ph.dataset.i18nDynamic = "";
-    ph.innerHTML = `<span class="slot__id">${asset}</span><span class="slot__label">${slotLabel(slot)}</span><span class="slot__hint">${ratio.replace("/", ":")} · assets/${asset}.webp</span>`;
+    ph.innerHTML = `<span class="slot__label">${slotLabel(slot)}</span>`;
     slot.append(ph);
   };
 
@@ -184,20 +183,25 @@
   // ---------- 电影段：滚动进度驱动遮幅 ----------
   const films = [...document.querySelectorAll(".film")];
   let ticking = false;
+  const clamp01 = (value) => Math.min(Math.max(value, 0), 1);
   const updateFilms = () => {
     ticking = false;
     const viewport = window.innerHeight;
-    films.forEach((film) => {
-      const rect = film.getBoundingClientRect();
+    const rects = films.map((film) => film.getBoundingClientRect());
+    films.forEach((film, i) => {
+      const rect = rects[i];
       if (rect.bottom < 0 || rect.top > viewport)
         return;
-      // 黑屏滑入时文字淡入；黑屏贴顶后遮幅拉开，文字随之淡出
-      const clamp01 = (value) => Math.min(Math.max(value, 0), 1);
+      // 黑屏滑入时文字淡入；黑屏贴顶后遮幅拉开，文字随之淡出，标题同步淡入
       const travel = rect.height - viewport;
       const textIn = clamp01((viewport * 0.75 - rect.top) / (viewport * 0.55));
       const open = clamp01((-viewport * 0.05 - rect.top) / (travel * 0.85));
+      // 下一段文字从出现处（视口 75%）移向屏幕中心时，本段标题随之淡出
+      const next = rects[i + 1];
+      const captionOut = next ? clamp01(next.top / (viewport * 0.75)) : 1;
       film.style.setProperty("--p", open.toFixed(3));
       film.style.setProperty("--t", (textIn * clamp01(1 - open * 2)).toFixed(3));
+      film.style.setProperty("--c", (clamp01(open * 2) * captionOut).toFixed(3));
     });
   };
   if (reducedMotion)
@@ -238,13 +242,16 @@
 
   setupCarousel(document.getElementById("galleryTrack"), document.getElementById("galleryCount"), [...document.querySelectorAll(".gallery .gallery__btn")]);
 
-  const rulesIndex = [...document.querySelectorAll(".rules__index button")];
-  const markRule = (index) => rulesIndex.forEach((button, i) => button.setAttribute("aria-current", String(i === index)));
-  const rulesButtons = [...document.querySelectorAll("[data-rules-dir]")];
-  rulesButtons.forEach((button) => { button.dataset.dir = button.dataset.rulesDir; });
-  const goToRule = setupCarousel(document.getElementById("rulesTrack"), document.getElementById("rulesCount"), rulesButtons, markRule);
-  rulesIndex.forEach((button) => button.addEventListener("click", () => goToRule(Number(button.dataset.goto))));
-  markRule(0);
+  // 机制画廊：玩法的核心机制与内核的体验支柱各一组
+  document.querySelectorAll(".rules").forEach((section) => {
+    const rulesIndex = [...section.querySelectorAll(".rules__index button")];
+    const markRule = (index) => rulesIndex.forEach((button, i) => button.setAttribute("aria-current", String(i === index)));
+    const rulesButtons = [...section.querySelectorAll("[data-rules-dir]")];
+    rulesButtons.forEach((button) => { button.dataset.dir = button.dataset.rulesDir; });
+    const goToRule = setupCarousel(section.querySelector(".rules__track"), section.querySelector(".rules__controls .gallery__count"), rulesButtons, markRule);
+    rulesIndex.forEach((button) => button.addEventListener("click", () => goToRule(Number(button.dataset.goto))));
+    markRule(0);
+  });
 
   // ---------- 机制 01：行动卡翻面与灵感 ----------
   const FLIP_TIME_LIMIT = 6;
